@@ -1,0 +1,7 @@
+{
+    "mensajeError":"Ocurrio un Error",
+    "mensajeOK":"Se agrego correctamete",
+    "MensajeValidador":"Debe completar la informacion",
+    "MensajeDeleted":"Se eliminó correctamente",
+    "MensajeUpdated":"Se actualizó correctamente"
+}
