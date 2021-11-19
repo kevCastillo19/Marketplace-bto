@@ -11,13 +11,17 @@ create table usuario(
     direccion varchar(100)
 );
 
-
-create table administrador(
-	idAdmin integer primary key auto_increment,
-    userAdmin varchar(60),
-    contrasenaAdmin varchar(50),
-    estadoAdmin boolean
+create table rol(
+	idRol integer primary key auto_increment,
+    nombreRol varchar(100)
 );
+
+#select *from usuario;
+alter table usuario add column idRol integer;
+alter table usuario add constraint fk_rol foreign key(idRol) references rol(idRol);
+#alter table producto modify column descProducto varchar(100);
+#describe producto;
+
 
 create table categoria(
 	idCategoria integer primary key auto_increment,
@@ -29,7 +33,7 @@ insert into categoria(nombreCategoria) values('Electrodomesticos');
 create table producto(
 	idProducto integer primary key auto_increment,
     nombreProducto varchar(100),
-    descProducto float,
+    descProducto varchar(100),
     precioProducto float,
     stockProducto int,
     idCategoria integer,
@@ -41,7 +45,15 @@ create table producto(
 ##select max(idProducto) as id from producto;
 ##select *from producto;
 ##select *from imagen;
-delete from producto where idProducto=8;
+#delete from producto where idProducto=8;
+
+ 
+create table imagen(
+	idImagen integer primary key auto_increment,
+    idProducto integer,
+    urlImage varchar(200),
+    FOREIGN KEY(idProducto) references producto(idProducto)  on delete cascade
+);
 
 #drop procedure sp_agregarProducto;
 
@@ -62,14 +74,8 @@ BEGIN
    
 END //
 DELIMITER ;
-call sp_agregarProducto('Licuadora',15,100,8,1,'licuadoraimagen');
- 
-create table imagen(
-	idImagen integer primary key auto_increment,
-    idProducto integer,
-    urlImage varchar(200),
-    FOREIGN KEY(idProducto) references producto(idProducto)  on delete cascade
-);
+#call sp_agregarProducto('Licuadora',15,100,8,1,'licuadoraimagen');
+
 
 create table venta(
 	numVenta integer primary key auto_increment,
@@ -89,7 +95,7 @@ create table detalleVenta(
     FOREIGN KEY(idProducto) references producto(idProducto)
 );
 
-drop table valoracion;
+#drop table valoracion;
 create table valoracion(
     idUsuario integer,
     idProducto integer,
