@@ -23,7 +23,9 @@ create table categoria(
 	idCategoria integer primary key auto_increment,
     nombreCategoria varchar(50)
 );
+insert into categoria(nombreCategoria) values('Electrodomesticos');
 
+#drop table imagen;
 create table producto(
 	idProducto integer primary key auto_increment,
     nombreProducto varchar(100),
@@ -33,12 +35,40 @@ create table producto(
     idCategoria integer,
     FOREIGN KEY(idCategoria) references categoria(idCategoria)
 );
+ 
+#insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Refrigeradora',10,500,5,1);
+#insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Microonda',15,100,8,1);
+##select max(idProducto) as id from producto;
+##select *from producto;
+##select *from imagen;
+delete from producto where idProducto=8;
 
+#drop procedure sp_agregarProducto;
+
+DELIMITER //
+create procedure sp_agregarProducto(
+in p_nombreProducto varchar(100), 
+in p_descProducto float, in p_precioProducto float, 
+in p_stockProducto int, in p_idCategoria integer, in p_imagen varchar(200))
+BEGIN
+	declare v_idProducto integer;
+    
+    INSERT INTO PRODUCTO(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) 
+    VALUES(p_nombreProducto,p_descProducto,p_precioProducto,p_stockProducto,p_idCategoria);
+    
+    select max(idProducto) into v_idProducto from producto;
+    
+    INSERT INTO IMAGEN(idProducto,urlImage) VALUES(v_idProducto,p_imagen);
+   
+END //
+DELIMITER ;
+call sp_agregarProducto('Licuadora',15,100,8,1,'licuadoraimagen');
+ 
 create table imagen(
 	idImagen integer primary key auto_increment,
     idProducto integer,
     urlImage varchar(200),
-    FOREIGN KEY(idProducto) references producto(idProducto)  
+    FOREIGN KEY(idProducto) references producto(idProducto)  on delete cascade
 );
 
 create table venta(
@@ -59,12 +89,13 @@ create table detalleVenta(
     FOREIGN KEY(idProducto) references producto(idProducto)
 );
 
+drop table valoracion;
 create table valoracion(
     idUsuario integer,
     idProducto integer,
     calificacion int,
-    FOREIGN KEY(idUsuario) references usuario(idUsuario),
-    FOREIGN KEY(idProducto) references producto(idProducto),
+    FOREIGN KEY(idUsuario) references usuario(idUsuario) ,
+    FOREIGN KEY(idProducto) references producto(idProducto) on delete cascade,
     primary key(idUsuario,idProducto)
 );
 
