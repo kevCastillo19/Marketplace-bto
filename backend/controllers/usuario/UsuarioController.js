@@ -16,6 +16,7 @@ router.post('/agregar-usuario', (req, res)=>{
     let contrasena = req.body.contrasena;
     let telefonoUsuario = req.body.telefonoUsuario;
     let direccion = req.body.direccion;
+    let idRol = req.body.idRol;
 
     let respuesta = {
         status: 200,
@@ -24,7 +25,7 @@ router.post('/agregar-usuario', (req, res)=>{
 
     if (!validador.validarDatos(nombreUsuario) || !validador.validarDatos(correoUsuario)
      || !validador.validarDatos(contrasena) || !validador.validarDatos(telefonoUsuario) 
-     || !validador.validarDatos(direccion)) {
+     || !validador.validarDatos(direccion) || !validador.validarDatos(idRol)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador
 
@@ -32,7 +33,7 @@ router.post('/agregar-usuario', (req, res)=>{
 
     }
 
-    service.agregarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion)
+    service.agregarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
         res.status(200);
@@ -53,6 +54,7 @@ router.put('/actualizar-usuario', (req, res)=>{
     let telefonoUsuario = req.body.telefonoUsuario;
     let direccion = req.body.direccion;
     let idUsuario = req.body.idUsuario;
+    let idRol = req.body.idRol;
 
     let respuesta = {
         status: 200,
@@ -61,7 +63,7 @@ router.put('/actualizar-usuario', (req, res)=>{
 
     if (!validador.validarDatos(nombreUsuario) || !validador.validarDatos(correoUsuario)
      || !validador.validarDatos(contrasena) || !validador.validarDatos(telefonoUsuario) 
-     || !validador.validarDatos(direccion) || !validador.validarDatos(idUsuario)) {
+     || !validador.validarDatos(direccion) || !validador.validarDatos(idUsuario) || !validador.validarDatos(idRol)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador
 
@@ -69,7 +71,7 @@ router.put('/actualizar-usuario', (req, res)=>{
 
     }
 
-    service.actualizarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idUsuario)
+    service.actualizarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol,idUsuario)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
         res.status(200);
@@ -90,10 +92,9 @@ router.post('/login-usuario', function (req, res) {
      
     service.login(correoUsuario, contrasena)
         .then(result => {
-            console.log(result);
             if (result.length > 0) {
-                var token = generarJWT(correoUsuario, contrasena);
-                res.status(200).json(token)
+                var token = generarJWT(result[0].nombreUsuario, result[0].correoUsuario, result[0].contrasena, result[0].telefonoUsuario, result[0].direccion, result[0].idRol);
+                res.status(200).json({token})
             }else{
               res.status(500).json({"status":500,
             "response":"No se encontro el usuario"})
@@ -101,7 +102,7 @@ router.post('/login-usuario', function (req, res) {
             
         })
         .catch(err => {
-            res.status(500).json({"error":err}) 
+            res.status(500).json({error:err}) 
         })
 });
 
@@ -138,9 +139,9 @@ router.get('/consultar-usuarioDetalle/:idUsuario', function (req, res) {
         })
 });
 
-function generarJWT(userName, pass) {
+function generarJWT(usuario) {
     // return jwt.sign(userName, TOKEN_SECRET, { expiresIn: 60 * 60 })
-    return jwt.sign({nombre:userName, password:pass}, TOKEN_SECRET);
+    return jwt.sign(usuario, TOKEN_SECRET);
 
 }
 

@@ -19,9 +19,9 @@ function seleccionarUsuario(idUsuario) {
     });
 }
 
-function agregarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion){
+function agregarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol){
     return new Promise((resolve, reject)=>{
-        conexion.query(propertiesConsulta.InsertUsuario,[nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion],(err,resultado)=>{
+        conexion.query(propertiesConsulta.InsertUsuario,[nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol],(err,resultado)=>{
             if(err) reject(err)
             else { 
                 resolve(resultado)
@@ -30,9 +30,9 @@ function agregarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,d
     });
 }
 
-function actualizarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idUsuario){
+function actualizarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol,idUsuario){
     return new Promise((resolve, reject)=>{
-        conexion.query(propertiesConsulta.UpdateUsuario,[nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idUsuario],(err,resultado)=>{
+        conexion.query(propertiesConsulta.UpdateUsuario,[nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol,idUsuario],(err,resultado)=>{
             if(err) reject(err)
             else { 
                 resolve(resultado)
