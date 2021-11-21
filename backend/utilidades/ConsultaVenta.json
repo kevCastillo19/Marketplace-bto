@@ -1,3 +1,5 @@
 {
-    "InsertVenta":"INSERT INTO VENTA(fechaVenta,totalVenta,idUsuario)"
+    "SelectVentas":"SELECT * FROM VENTA",
+    "SelectFinalVenta":"SELECT MAX(numVenta) FROM VENTA",
+    "InsertVenta":"INSERT INTO VENTA(fechaVenta,totalVenta,idUsuario) values(?,?,?)"
 }
