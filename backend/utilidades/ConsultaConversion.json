@@ -1,0 +1,3 @@
+{
+    "InsertConversion":"INSERT INTO CONVERSION(tipoMoneda, valorMoneda, montoIngresado, fechaConversion)"
+}

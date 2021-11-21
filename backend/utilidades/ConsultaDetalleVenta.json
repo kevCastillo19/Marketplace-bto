@@ -1,0 +1,3 @@
+{
+    "InsertDetalleVenta":"INSERT INTO DETALLEVENTA(numVenta, idProduct, cantidadProducto, total)"
+}

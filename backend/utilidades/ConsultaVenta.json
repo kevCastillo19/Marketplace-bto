@@ -1,0 +1,3 @@
+{
+    "InsertVenta":"INSERT INTO VENTA(fechaVenta,totalVenta,idUsuario)"
+}
