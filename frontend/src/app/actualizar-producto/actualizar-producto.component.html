@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+
+  .alert {
+    width: 50%;
+align-items: center;
+    margin-top: -15rem;
+
+  }
+
+</style>
+<body>
+
+  <div class="container">
+
+    <div class="alert alert-success" role="alert">
+        Actualizando el producto <b id="nombreProducto">*nombre del producto*</b>
+      </div>
+
+    <form class="row g-3" enctype="multipart/form-data" action="" method="post" autocomplete="off">
+
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Producto del Producto</label>
+        <input type="text" style="width: 90%;" class="form-control" name="nombre" required>
+      </div>
+
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Descripcion del Producto</label>
+        <textarea class="form-control" id="descProducto" name="descProducto" required></textarea>
+
+      </div>
+
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Precio del Producto</label>
+        <input type="text" style="width: 90%;" class="form-control" placeholder="$0 - $999.9" id="precioProducto" name="precioProducto"
+        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="5"/>
+      </div>
+
+
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Stock del Producto</label>
+        <input type="text" style="width: 90%;" class="form-control" placeholder="1 - 999" id="stockProducto" name="stockProducto"
+        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3"/>
+      </div> 
+
+      <div class="col-xs-12 col-md-6" >
+        <label class="form-label">Categoria del Producto</label>
+       
+        <select name="idCategoria" style="width: 90%;"  class="form-select" required>
+          <option class="option"  id="idCategoria">Debes Seleccionar La Categoria</option>
+
+          <option value="">1</option>
+
+          <option value="">2</option>
+
+        </select>
+      </div>
+
+      <div class="col-xs-6 col-md-12">
+        <button class="btn btn-success" type="submit">Agregar Producto</button>
+        </div>
+    </form>
+  </div>
+
+
+</body>
+
+</html>

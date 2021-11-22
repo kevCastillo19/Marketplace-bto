@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .alert {
+    width: 50%;
+    align-items: center;
+    margin-top: -15rem;
+
+  }
+</style>
+
+
+<body>
+
+  <div class="container">
+
+    <div class="alert alert-success" role="alert">
+      Agregando una Nueva Imagen
+    </div>
+
+    <form class="row g-3" enctype="multipart/form-data" action="" method="post" autocomplete="off">
+
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Id del Producto</label>
+        <!--<input type="text" style="width: 90%;" class="form-control" name="categoria" value="<?= $marca; ?>">-->
+        <select name="idProducto" class="form-select" required>
+          <option class="option" id="idProducto">Debes Seleccionar El Producto</option>
+
+          <option value="">1</option>
+
+          <option value="">2</option>
+
+        </select>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Url de la Imagen</label>
+        <textarea class="form-control" id="urlImage" name="urlImage" required></textarea>
+
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Url de la Imagen</label>
+        <input type="file" id="urlImage" class="form-control" name="urlImage">
+
+      </div>
+
+      <div class="col-xs-6 col-md-12">
+      <button class="btn btn-success" type="submit">Agregar Imagen</button>
+      </div>
+    </form>
+  </div>
+
+
+</body>
+
+</html>
