@@ -1,0 +1,4 @@
+{
+    "SelectDetalleVentas":"SELECT * FROM DETALLEVENTA",
+    "InsertDetalleVenta":"INSERT INTO DETALLEVENTA(numVenta, idProducto, cantidadProducto, total) values(?,?,?,?)"
+}

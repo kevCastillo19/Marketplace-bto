@@ -1,0 +1,4 @@
+{
+    "SelectConversiones":"SELECT * FROM CONVERSION",
+    "InsertConversion":"INSERT INTO CONVERSION(tipoMoneda, valorMoneda, montoIngresado, fechaConversion) values(?,?,?,?)"
+}

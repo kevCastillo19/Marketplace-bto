@@ -10,6 +10,8 @@ create table usuario(
     telefonoUsuario varchar(15),
     direccion varchar(100)
 );
+insert into usuario(nombreUsuario, correoUsuario, contrasena, telefonoUsuario, direccion) values('javier','javier@gmail.com','asdf','4848484848','SS');
+select * from usuario;
 
 create table rol(
 	idRol integer primary key auto_increment,
@@ -40,7 +42,9 @@ create table producto(
     FOREIGN KEY(idCategoria) references categoria(idCategoria)
 );
  
-#insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Refrigeradora',10,500,5,1);
+insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Refrigeradora',10,500,5,1);
+insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('cocina',10,500,5,1);
+insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('tv',10,500,5,1);
 #insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Microonda',15,100,8,1);
 ##select max(idProducto) as id from producto;
 ##select *from producto;
@@ -85,6 +89,9 @@ create table venta(
     FOREIGN KEY(idUsuario) references usuario(idUsuario)
 );
 
+insert into venta(fechaVenta, totalVenta, idUsuario) values(sysdate(), 50.00, 1);
+select * from venta;
+
 create table detalleVenta(
 	idDetalle integer primary key auto_increment,
     numVenta integer,
@@ -94,6 +101,9 @@ create table detalleVenta(
     FOREIGN KEY(numVenta) references venta(numVenta),
     FOREIGN KEY(idProducto) references producto(idProducto)
 );
+
+insert into detalleventa(numVenta, idProducto, cantidadProducto, total) values(2, 1, 5, 100);
+select * from detalleventa;
 
 #drop table valoracion;
 create table valoracion(
@@ -105,6 +115,10 @@ create table valoracion(
     primary key(idUsuario,idProducto)
 );
 
+insert into valoracion(idUsuario, idProducto, calificacion) values(1,1,5);
+insert into valoracion(idUsuario, idProducto, calificacion) values(1,2,4);
+insert into valoracion(idUsuario, idProducto, calificacion) values(2,1,3);
+
 create table conversion(
 	idConversion integer primary key auto_increment,
     tipoMoneda varchar(50),
@@ -113,6 +127,8 @@ create table conversion(
     fechaConversion date,
     FOREIGN KEY(idConversion) references venta(numVenta)
 );
+
+insert into conversion(tipoMoneda, valorMoneda,montoIngresado,fechaConversion) values('Euro', 1.25, 95.99,sysdate());
 
 show tables;
 
