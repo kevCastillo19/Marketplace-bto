@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .alert {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: -15rem;
+  }
+
+  main {
+    margin-right: 500px;
+    margin-left: 270px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h5 {
+
+    text-align: left;
+
+  }
+
+  /* hr {
+position: relative;
+    background-color: #C80000;
+    color: #C80000;
+    -webkit-transform: rotate(90deg);
+
+    display: fixed;
+
+    top: -7rem;
+    left: -1%;
+    margin-bottom: 0.1em;
+    margin-left: 20rem;
+    margin-right: 25em;
+    border-style: inset;
+    border-width: 2px;
+  }
+  .container {
+    display: grid;
+
+    grid-template-columns: repeat(2, auto);
+
+
+    justify-content: center;
+
+  }*/
+</style>
+
+<body>
+
+  <div class="alert alert-success" role="alert">
+    Agregaste <b>*nombre del item*</b> a tu bolsa!. <a href="/bolsa">Ver mi Bolsa</a>
+  </div>
+
+  <div class="container">
+
+    <form id="login-form">
+      <div class="form-container sign-in-container">
+        <img id="urlImage" src="/assets/images/laptop.png" alt="">
+
+      </div>
+
+
+      <div class="overlay-container">
+
+        <h5 id="idCategoria" style="font-weight:initial;">*Categoria del producto*</h5>
+        <h5 id="nombreProducto">Nombre: *nombre producto*</h5>
+        <h5 id="descProducto">Descripcion: Descripcion del producto Descripcion del producto Descripcion del producto
+          Descripcion del producto Descripcion del producto Descripcion del producto Descripcion del producto
+          Descripcion del producto</h5>
+
+        <h5 style="font-weight:lighter;" id="stockProducto">Stock: *Stock*</h5>
+
+        <div style="text-align: left ; padding-top: 2%;">
+          <b style="font-weight:lighter; font-size: 20px; " id="precioProducto">$*Precio Producto*  |  </b>
+          <b style="font-weight:lighter; font-size: 20px;" id="idProducto">*Id del Producto* </b> 
+         
+        </div>
+
+
+        <button type="submit" >Agregar al Carrito</button>
+
+      </div>
+    </form>
+
+
+
+  </div>
+</body>
+
+</html>
