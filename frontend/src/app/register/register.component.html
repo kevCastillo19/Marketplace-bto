@@ -4,50 +4,67 @@
 
     <div class="grid">
   
-      <form action="https://httpbin.org/post" method="POST" class="form login">
+      <form action="" class="form login" [formGroup]="formularioAgregar">
   
         <div class="form__field">
           <label for="login__username"><svg class="icon">
               <use xlink:href="#icon-user"></use>
             </svg><span class="hidden"></span></label>
-          <input autocomplete="Nombre de Usuario" id="nombreUsuario" type="text" name="username" class="form__input" placeholder="Nombre de Usuario" required>
+          <input formControlName="nombreUsuario" autocomplete="Nombre de Usuario" id="nombreUsuario" type="text" name="username" class="form__input" placeholder="Nombre de Usuario" required>
+        </div>
+        <div *ngIf="formularioAgregar.controls['nombreUsuario'].invalid && formularioAgregar.controls['nombreUsuario'].dirty"  class="alert alert-success" role="alert">
+          <span *ngIf="formularioAgregar.controls['nombreUsuario'].errors?.required">Nombre de usuario es requerido</span>
         </div>
   
         <div class="form__field">
             <label for="login__username"><svg class="icon">
                 <use xlink:href="#icon-user"></use>
               </svg><span class="hidden"></span></label>
-            <input autocomplete="Correo de Usuario" id="correoUsuario" type="text" name="username" class="form__input" placeholder="Correo de Usuario" required>
+            <input formControlName="correoUsuario" autocomplete="Correo de Usuario" id="correoUsuario" type="text" name="username" class="form__input" placeholder="Correo de Usuario" required>
+          </div>
+          <div *ngIf="formularioAgregar.controls['correoUsuario'].invalid && formularioAgregar.controls['correoUsuario'].dirty"  class="alert alert-success" role="alert">
+            <div *ngIf="formularioAgregar.controls['correoUsuario'].errors?.required">Correo es requerido</div>
+            <div *ngIf="formularioAgregar.controls['correoUsuario'].errors?.email">Correo needs valid</div>
           </div>
 
         <div class="form__field">
           <label for="login__password"><svg class="icon">
               <use xlink:href="#icon-lock"></use>
             </svg><span class="hidden">Password</span></label>
-          <input id="login__password" type="password" name="contrasena" class="form__input" placeholder="Password" required>
+          <input formControlName="contrasena" id="login__password" type="password" name="contrasena" class="form__input" placeholder="Password" required>
         </div>
+        <div *ngIf="formularioAgregar.controls['contrasena'].invalid && formularioAgregar.controls['contrasena'].dirty"  class="alert alert-success" role="alert">
+          <div *ngIf="formularioAgregar.controls['contrasena'].errors?.required">Contraseña es requerido</div>
+          <div *ngIf="formularioAgregar.controls['contrasena'].errors?.minlength">Contraseña debe ser mayor o igual a 8 caracteres</div>
+      </div>
 
         <div class="form__field">
             <label for="login__username"><svg class="icon">
                 <use xlink:href="#icon-user"></use>
               </svg><span class="hidden"></span></label>
-            <input autocomplete="Telefono de Usuario" id="telefonoUsuario" type="text" name="username" class="form__input" placeholder="Telefono de Usuario" required>
+            <input formControlName="telefonoUsuario" mask="9999-9999" autocomplete="Telefono de Usuario" id="telefonoUsuario" type="text" name="username" class="form__input" placeholder="Telefono de Usuario" required>
+          </div>
+          <div *ngIf="formularioAgregar.controls['telefonoUsuario'].invalid && formularioAgregar.controls['telefonoUsuario'].dirty"  class="alert alert-success" role="alert">
+            <span *ngIf="formularioAgregar.controls['telefonoUsuario'].errors?.required">Telefono es requerido</span>
           </div>
   
           <div class="form__field">
             <label for="login__username"><svg class="icon">
                 <use xlink:href="#icon-user"></use>
               </svg><span class="hidden"></span></label>
-            <input autocomplete="Direccion de Usuario" id="direccion" type="text" name="username" class="form__input" placeholder="Direccion de Usuario" required>
+            <input formControlName="direccion" autocomplete="Direccion de Usuario" id="direccion" type="text" name="username" class="form__input" placeholder="Direccion de Usuario" required>
           </div>
+          <div *ngIf="formularioAgregar.controls['direccion'].invalid && formularioAgregar.controls['direccion'].dirty"  class="alert alert-success" role="alert">
+            <span *ngIf="formularioAgregar.controls['direccion'].errors?.required">Direccion es requerido</span>
+        </div>
 
         <div class="form__field">
-          <input type="submit" value="Sign In">
+          <input [disabled]="!formularioAgregar.valid" (click)="registrar()" type="submit" value="Sign In">
         </div>
   
       </form>
   
-      <p class="text--center">Ya eres miembro? <a href="/login">Inicia Sesion!</a> <svg class="icon">
+      <p class="text--center">Ya eres miembro? <a [routerLink]="[ '/login' ]">Inicia Sesion!</a> <svg class="icon">
           <use xlink:href="#icon-arrow-right"></use>
         </svg></p>
   

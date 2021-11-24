@@ -16,16 +16,16 @@
 
       <nav>
         <ul>
-          <a href="/"><img src="/assets/images/logo.png " style="height:100px;"></a>
+          <a [routerLink]="[ '/' ]"><img src="/assets/images/logo.png " style="height:100px;"></a>
         </ul>
       </nav>
       <div class=""></div>
       <form class="form-inline my-2 my-lg-0">
 
-        <a href="/mi-bolsa" class="carrito" ><i style=" margin: 5px; "
+        <a [routerLink]="[ '/mi-bolsa' ]" class="carrito" ><i style=" margin: 5px; "
             class="fas fa-dolly fa-lg"></i><b>Mi Carrito</b></a>
             
-        <a href="/login" class="user" style="text-decoration: none;     font-size:20px;"><b> Mi Cuenta</b></a>
+        <a [routerLink]="[ '/login' ]" class="user" style="text-decoration: none;     font-size:20px;"><b> Mi Cuenta</b></a>
 
       </form>
 

@@ -89,11 +89,14 @@ router.post('/login-usuario', function (req, res) {
 
     let correoUsuario = req.body.correoUsuario;
     let contrasena = req.body.contrasena;
-     
+     console.log(req.body);
     service.login(correoUsuario, contrasena)
         .then(result => {
+            var usuario={
+
+            };
             if (result.length > 0) {
-                var token = generarJWT(result[0].nombreUsuario, result[0].correoUsuario, result[0].contrasena, result[0].telefonoUsuario, result[0].direccion, result[0].idRol);
+                var token = generarJWT({nombreUsuario:result[0].nombreUsuario, correoUsuario:result[0].correoUsuario, contrasena:result[0].contrasena, telefonoUsuario:result[0].telefonoUsuario, direccion:result[0].direccion, idRol:result[0].idRol});
                 res.status(200).json({token})
             }else{
               res.status(500).json({"status":500,
