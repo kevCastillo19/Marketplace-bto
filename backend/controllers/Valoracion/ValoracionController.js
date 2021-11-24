@@ -21,7 +21,7 @@ router.get('/consultar-valoraciones', function (req, res) {
         })
 });
 
-router.post('/agregar-valoracion', (req, res)=>{
+router.post('/agregar-valoracion', validador.validate(validador.valoracionValidacion), (req, res)=>{
     let idUsuario = req.body.idUsuario;
     let idProducto = req.body.idProducto;
     let calificacion = req.body.calificacion;
@@ -53,7 +53,7 @@ router.post('/agregar-valoracion', (req, res)=>{
     res.json(respuesta);
 });
 
-router.put('/actualizar-valoracion', (req, res)=>{
+router.put('/actualizar-valoracion', validador.validate(validador.valoracionValidacion), (req, res)=>{
     let calificacion = req.body.calificacion;
     let idUsuario = req.body.idUsuario;
     let idProducto = req.body.idProducto;

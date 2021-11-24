@@ -21,9 +21,9 @@ function seleccionarProductoDetalle(idProducto) {
     });
 }
 
-function agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen){
+function agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria){
     return new Promise((resolve, reject)=>{
-        conexion.query(propertiesConsulta.SP_AgregaProducto,[nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen],(err,resultado)=>{
+        conexion.query(propertiesConsulta.SP_AgregaProducto,[nombreProducto,descProducto,precioProducto,stockProducto,idCategoria],(err,resultado)=>{
             if(err) reject(err)
             else { 
                 resolve(resultado)

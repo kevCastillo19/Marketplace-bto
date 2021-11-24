@@ -10,7 +10,7 @@ const TOKEN_SECRET = "bytheone$2021";
 
 var router = express.Router();
 
-router.post('/agregar-usuario', (req, res)=>{
+router.post('/agregar-usuario', validador.validate(validador.usuarioValidacion), (req, res)=>{
     let nombreUsuario = req.body.nombreUsuario;
     let correoUsuario = req.body.correoUsuario;
     let contrasena = req.body.contrasena;
@@ -47,7 +47,7 @@ router.post('/agregar-usuario', (req, res)=>{
     res.json(respuesta);
 });
 
-router.put('/actualizar-usuario', (req, res)=>{
+router.put('/actualizar-usuario', validador.validate(validador.usuarioUpdateValidacion), (req, res)=>{
     let nombreUsuario = req.body.nombreUsuario;
     let correoUsuario = req.body.correoUsuario;
     let contrasena = req.body.contrasena;
@@ -85,7 +85,7 @@ router.put('/actualizar-usuario', (req, res)=>{
     res.json(respuesta);
 });
 
-router.post('/login-usuario', function (req, res) {
+router.post('/login-usuario', validador.validate(validador.loginValidacion), function (req, res) {
 
     let correoUsuario = req.body.correoUsuario;
     let contrasena = req.body.contrasena;

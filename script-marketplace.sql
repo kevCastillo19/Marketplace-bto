@@ -65,17 +65,13 @@ DELIMITER //
 create procedure sp_agregarProducto(
 in p_nombreProducto varchar(100), 
 in p_descProducto float, in p_precioProducto float, 
-in p_stockProducto int, in p_idCategoria integer, in p_imagen varchar(200))
+in p_stockProducto int, in p_idCategoria integer)
 BEGIN
 	declare v_idProducto integer;
     
     INSERT INTO PRODUCTO(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) 
     VALUES(p_nombreProducto,p_descProducto,p_precioProducto,p_stockProducto,p_idCategoria);
     
-    select max(idProducto) into v_idProducto from producto;
-    
-    INSERT INTO IMAGEN(idProducto,urlImage) VALUES(v_idProducto,p_imagen);
-   
 END //
 DELIMITER ;
 #call sp_agregarProducto('Licuadora',15,100,8,1,'licuadoraimagen');

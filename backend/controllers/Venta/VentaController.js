@@ -32,7 +32,7 @@ router.get('/consultar-ultimaventa', function (req, res) {
         })
 });
 
-router.post('/agregar-venta', (req, res)=>{
+router.post('/agregar-venta', validador.validate(validador.ventaValidacion), (req, res)=>{
     let fechaVenta = req.body.fechaVenta;
     let totalVenta = req.body.totalVenta;
     let idUsuario = req.body.idUsuario;

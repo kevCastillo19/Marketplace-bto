@@ -1,7 +1,7 @@
 {
     "SelectProductos": "SELECT * FROM PRODUCTO",
     "SelectProductoDetalle": "SELECT * FROM PRODUCTO WHERE idProducto=?",
-    "SP_AgregaProducto":"call sp_agregarProducto(?,?,?,?,?,?)",
+    "SP_AgregaProducto":"call sp_agregarProducto(?,?,?,?,?)",
     "UpdateProducto":"UPDATE PRODUCTO set nombreProducto=?,descProducto=?,precioProducto=?,stockProducto=?,idCategoria=? where idProducto=?",
     "DeleteProducto":"delete from producto where idProducto=?"
 }

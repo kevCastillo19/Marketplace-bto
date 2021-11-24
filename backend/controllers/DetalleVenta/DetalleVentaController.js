@@ -21,7 +21,7 @@ router.get('/consultar-detalleventas', function (req, res) {
         })
 });
 
-router.post('/agregar-detalleventa', (req, res)=>{
+router.post('/agregar-detalleventa', validador.validate(validador.detalleVentaValidacion), (req, res)=>{
     let numVenta = req.body.numVenta;
     let idProducto = req.body.idProducto;
     let cantidadProducto = req.body.cantidadProducto;

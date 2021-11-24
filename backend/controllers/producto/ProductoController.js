@@ -66,13 +66,12 @@ router.delete('/eliminar-producto/:idProducto', function (req, res) {
         })
 });
 
-router.post('/agregar-producto', (req, res)=>{
+router.post('/agregar-producto', validador.validate(validador.productoValidacion), (req, res)=>{
     let nombreProducto = req.body.nombreProducto;
     let descProducto = req.body.descProducto;
     let precioProducto = req.body.precioProducto;
     let stockProducto = req.body.stockProducto;
     let idCategoria = req.body.idCategoria;
-    let imagen = req.body.imagen;
 
     let respuesta = {
         status: 200,
@@ -81,7 +80,7 @@ router.post('/agregar-producto', (req, res)=>{
 
     if (!validador.validarDatos(nombreProducto) || !validador.validarDatos(descProducto)
      || !validador.validarDatos(precioProducto) || !validador.validarDatos(stockProducto) 
-     || !validador.validarDatos(idCategoria) || !validador.validarDatos(imagen)) {
+     || !validador.validarDatos(idCategoria)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador
 
@@ -89,7 +88,7 @@ router.post('/agregar-producto', (req, res)=>{
 
     }
 
-    service.agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen)
+    service.agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
         res.status(200);
@@ -102,7 +101,8 @@ router.post('/agregar-producto', (req, res)=>{
     })
     res.json(respuesta);
 });
-router.put('/actualizar-producto', (req, res)=>{
+
+router.put('/actualizar-producto', validador.validate(validador.productoUpdateValidacion), (req, res)=>{
     let nombreProducto = req.body.nombreProducto;
     let descProducto = req.body.descProducto;
     let precioProducto = req.body.precioProducto;

@@ -55,7 +55,7 @@ router.delete('/eliminar-imagen/:idImagen', function (req, res) {
         })
 });
 
-router.post('/agregar-imagen', (req, res)=>{
+router.post('/agregar-imagen', validador.validate(validador.imagenValidacion), (req, res)=>{
      
     let idProducto = req.body.idProducto;
     let urlImage = req.body.urlImage;
