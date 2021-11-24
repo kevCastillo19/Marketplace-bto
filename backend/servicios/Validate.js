@@ -89,12 +89,12 @@ function usuarioValidacion(data) {
         nombreUsuario: yup.string().max(100).required(),
         correoUsuario: yup.string().matches(/^[a-z0-9_.]+@[a-z0-9]+\.[a-z0-9_.]+$/).required(),
         contrasena: yup.string().max(100).required(),
-        telefonoUsuario: yup.number().min(7).required(),
+        telefonoUsuario: yup.string().min(7).required(),
         direccion: yup.string().max(100).required(),
         idRol: yup.number().integer().positive().required(),
     });
     
-    schema.validateSync(data);
+    console.log(schema.validateSync(data));
 }
 
 function loginValidacion(data) {

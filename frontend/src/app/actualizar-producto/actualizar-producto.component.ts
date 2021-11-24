@@ -34,7 +34,7 @@ export class ActualizarProductoComponent implements OnInit {
       });
   }
 
-  public getProducto(id: string) {
+  public getProducto(id: any) {
     this.service.getProducto(id).subscribe(res => {
       console.log(res)
     }, error => {

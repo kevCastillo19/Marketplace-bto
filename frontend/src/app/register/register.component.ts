@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
       }else{
         this.toastr.error("Error",response.mensaje);
       }
+      this.formularioAgregar.reset();
     },
     error => {
       this.toastr.error("No se registró","Sucedió un problema al registrar usuario");
