@@ -11,7 +11,8 @@ import { ProductoService } from '../service/producto.service';
 export class ProductosComponent implements OnInit {
 
   productos: Producto[] = [];
-  idProducto=0;
+  producto: Producto = new Producto();
+  idProducto:number=0;
   productoForm = new FormGroup({
     nombreProducto: new FormControl(''),
     descProducto: new FormControl(''),
@@ -35,10 +36,11 @@ export class ProductosComponent implements OnInit {
     })
   }
 
-  public getProducto(idProducto: number) {
+  public getProducto(idProducto: any) {
     this.service.getProducto(idProducto).subscribe(res => {
-     const {idProducto, nombreProducto,descProducto,precioProducto, stockProducto,idCategoria} = res
-      this.idProducto = idProducto
+     const {idProducto, nombreProducto,descProducto,precioProducto, stockProducto,idCategoria} = res;
+     
+      this.idProducto = idProducto || 0;
       this.productoForm.setValue({nombreProducto,descProducto,
         precioProducto, stockProducto,idCategoria})
     }, error => {

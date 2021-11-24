@@ -1,17 +1,17 @@
 export class Producto {
-    idProducto?= 0;
-    nombreProducto = '';
-    descProducto = '';
-    precioProducto = 0;
-    stockProducto = 0;
-    idCategoria = 0;
+    idProducto?:number= 0;
+    nombreProducto:string = '';
+    descProducto:string = '';
+    precioProducto:number = 0.0;
+    stockProducto:number = 0;
+    idCategoria:number = 0;
 
     constructor() {
-        this.idProducto,
-            this.nombreProducto,
-            this.descProducto,
-            this.precioProducto,
-            this.stockProducto,
-            this.idCategoria
+        this.idProducto=this.idProducto;
+            this.nombreProducto=this.nombreProducto;
+            this.descProducto=this.descProducto;
+            this.precioProducto=this.precioProducto;
+            this.stockProducto=this.stockProducto;
+            this.idCategoria=this.idCategoria;
     }
 }

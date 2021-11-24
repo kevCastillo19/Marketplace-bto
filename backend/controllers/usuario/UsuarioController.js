@@ -35,6 +35,7 @@ router.post('/agregar-usuario', validador.validate(validador.usuarioValidacion),
 
     service.agregarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol)
     .then(data=>{
+        console.log('agrega', data.insertId);
         respuesta.mensaje = mensajes.mensajeOK
         res.status(200);
     })
