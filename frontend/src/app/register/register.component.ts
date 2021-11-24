@@ -42,19 +42,26 @@ export class RegisterComponent implements OnInit {
 
     this.usuarioService.registro(this.usuario).subscribe((response:any) => {
       console.log(response);
-      if (response.status == 200) {
-        this.toastr.success("Exito!","Te has registrado exitosamente");
+      if (response.status == 200) {this.showAuthorizedMessage("Te has registrado exitosamente","Exito!");
       }else{
-        this.toastr.error("Error",response.mensaje);
+        this.showNotAuthorizedMessage(response.mensaje,"Error")
       }
       this.formularioAgregar.reset();
     },
     error => {
-      this.toastr.error("No se registró","Sucedió un problema al registrar usuario");
+      this.showNotAuthorizedMessage("Sucedió un problema al registrar usuario","No se registró")
       console.log(error);
     }
     );
 
+  }
+
+  showAuthorizedMessage(mensaje: string, titulo: string){
+    this.toastr.success(mensaje, titulo);
+  }
+
+  showNotAuthorizedMessage(mensaje: string, titulo: string){
+    this.toastr.error(mensaje, titulo);
   }
 
 }
