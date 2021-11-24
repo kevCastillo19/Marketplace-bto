@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Producto } from '../models/producto';
 import { environment } from '../../environments/environment'
 
@@ -8,11 +8,18 @@ import { environment } from '../../environments/environment'
   providedIn: 'root'
 })
 export class ProductoService {
-  producto:Producto = new Producto();
-  url:string = environment.baseUrl;
-  constructor(private http:HttpClient){}
+  producto: Producto = new Producto();
+  url: string = environment.baseUrl;
+  constructor(private http: HttpClient) { }
 
-getProductos(){
-return this.http.get<Producto[]>(this.url+'Producto/consultar-producto')
-}
+  getProductos() {
+    return this.http.get<Producto[]>(this.url + 'Producto/consultar-producto')
+  }
+
+  public agregarProducto(obj: Producto) {
+    return this.http.post<Producto>(this.url + 'Producto/agregar-producto', obj);
+  }
+  public getProducto(idProducto:number){
+    return this.http.get<Producto>(this.url+`Producto/actualizar-producto/${idProducto}` )
+  }
 }

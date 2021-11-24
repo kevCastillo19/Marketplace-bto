@@ -7,15 +7,17 @@ import { HeaderComponent } from './header/header.component';
 import { ItemCompraUserComponent } from './item-compra-user/item-compra-user.component';
 import { LoginComponent } from './login/login.component';
 import { MiBolsaUserComponent } from './mi-bolsa-user/mi-bolsa-user.component';
+import { ProductosComponent } from './productos/productos.component';
 import { RegisterComponent } from './register/register.component';
+import { ProductoService } from './service/producto.service';
 
 const routes: Routes = [
 {
-  path: '', redirectTo: 'header', pathMatch: 'full'
+  path: '', redirectTo: 'productos', pathMatch: 'full'
 },
-  {
-    path: '',component:HeaderComponent
-  },
+{
+  path: '',component:ProductosComponent
+},
   {
     path: 'login',component: LoginComponent
   },

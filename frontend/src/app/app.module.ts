@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask';
+import { ProductosComponent } from './productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgxMaskModule } from 'ngx-mask';
     ItemCompraUserComponent,
     MiBolsaUserComponent,
     ActualizarProductoComponent,
-    
+    ProductosComponent,
+
   ],
   imports: [
     CommonModule,

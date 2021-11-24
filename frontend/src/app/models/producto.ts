@@ -2,7 +2,7 @@ export class Producto {
     idProducto?= 0;
     nombreProducto = '';
     descProducto = '';
-    precioProducto = '';
+    precioProducto = 0;
     stockProducto = 0;
     idCategoria = 0;
 

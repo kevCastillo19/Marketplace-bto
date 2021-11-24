@@ -190,9 +190,11 @@ nav>ul {
 
 
 #user1 {
+  position: absolute;
   background-color: #003f76;
   height: 37px;
-  margin-left: -70%;
+
+  margin-top: -50px;
   font-size: 20px;
   
 }
@@ -201,13 +203,13 @@ nav>ul {
   border-radius: 10px 10px 10px 10px;
   grid-area: user;
   box-shadow: inset 0px 0px 0px 1px var(--color);
-  height: 37px;
-  margin-top: 2px;
-  left: -10%;
+  height: 35px;
+  
+
   font-size: 20px;
 
-  margin: 11px;
-  margin-top: -9px;
+  margin: 0px 11px;
+
 }
 
 .carrito {
