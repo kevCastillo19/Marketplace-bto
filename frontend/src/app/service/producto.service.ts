@@ -9,11 +9,10 @@ import { environment } from '../../environments/environment'
 })
 export class ProductoService {
   producto:Producto = new Producto();
-  url:string = environment.baseUrl
+  url:string = environment.baseUrl;
   constructor(private http:HttpClient){}
 
-public getProductos(){
+getProductos(){
 return this.http.get<Producto[]>(this.url+'Producto/consultar-producto')
 }
- 
 }

@@ -1,0 +1,6 @@
+{
+    "SelectValoraciones": "SELECT * FROM VALORACION",
+    "SelectValoracion": "SELECT * FROM VALORACION WHERE idProducto=?",
+    "InsertValoracion":"INSERT INTO VALORACION(idUsuario, idProducto, calificacion) values(?,?,?)",
+    "UpdateValoracion":"UPDATE VALORACION set calificacion=? where idUsuario=? and idProducto=?" 
+}

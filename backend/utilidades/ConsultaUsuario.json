@@ -1,0 +1,7 @@
+{
+    "SelectUsuarios": "SELECT * FROM USUARIO",
+    "LoginUsuario": "SELECT * FROM USUARIO WHERE correoUsuario=? AND contrasena=?",
+    "SelectUsuario": "SELECT * FROM USUARIO WHERE idUsuario=?",
+    "InsertUsuario":"INSERT INTO USUARIO(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol) values(?,?,?,?,?,?)",
+    "UpdateUsuario":"UPDATE USUARIO set nombreUsuario=?,correoUsuario=?,contrasena=?,telefonoUsuario=?,direccion=?, idRol=? where idUsuario=?" 
+}
