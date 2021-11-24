@@ -1,7 +1,7 @@
 {
-    "SelectUsuarios": "SELECT * FROM USUARIO",
-    "LoginUsuario": "SELECT * FROM USUARIO WHERE correoUsuario=? AND contrasena=?",
-    "SelectUsuario": "SELECT * FROM USUARIO WHERE idUsuario=?",
-    "InsertUsuario":"INSERT INTO USUARIO(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol) values(?,?,?,?,?,?)",
-    "UpdateUsuario":"UPDATE USUARIO set nombreUsuario=?,correoUsuario=?,contrasena=?,telefonoUsuario=?,direccion=?, idRol=? where idUsuario=?" 
+    "SelectUsuarios": "SELECT * FROM usuario",
+    "LoginUsuario": "SELECT * FROM usuario WHERE correoUsuario=? AND contrasena=?",
+    "SelectUsuario": "SELECT * FROM usuario WHERE idUsuario=?",
+    "InsertUsuario":"INSERT INTO usuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol) values(?,?,?,?,?,?)",
+    "UpdateUsuario":"UPDATE usuario set nombreUsuario=?,correoUsuario=?,contrasena=?,telefonoUsuario=?,direccion=?, idRol=? where idUsuario=?" 
 }

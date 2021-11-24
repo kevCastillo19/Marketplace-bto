@@ -4,29 +4,40 @@
 
     <div class="grid">
   
-      <form action="https://httpbin.org/post" method="POST" class="form login">
+      <form action="" class="form login" [formGroup]="formularioAgregar">
   
         <div id="registro" class="form__field">
           <label for="login__username"><svg class="icon">
               <use xlink:href="#icon-user"></use>
-            </svg><span class="hidden">Username</span></label>
-          <input autocomplete="username" id="login__username" type="text" name="username" class="form__input" placeholder="Username" required>
+            </svg><span class="hidden">Mail</span></label>
+          <input formControlName="correoUsuario" autocomplete="mail" id="login__username" type="text" name="Mail" class="form__input" placeholder="Correo" required>
+           
+        </div>
+        <div *ngIf="formularioAgregar.controls['correoUsuario'].invalid && formularioAgregar.controls['correoUsuario'].dirty"  class="alert alert-success" role="alert">
+          <div *ngIf="formularioAgregar.controls['correoUsuario'].errors?.required">Correo es requerido</div>
+          <div *ngIf="formularioAgregar.controls['correoUsuario'].errors?.email">Correo needs valid</div>
         </div>
   
         <div id="registro" class="form__field">
           <label for="login__password"><svg class="icon">
               <use xlink:href="#icon-lock"></use>
             </svg><span class="hidden">Password</span></label>
-          <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
+            
+          <input formControlName="contrasena" id="login__password" type="password" name="password" class="form__input" placeholder="Contraseña" required>
+           
         </div>
+        <div *ngIf="formularioAgregar.controls['contrasena'].invalid && formularioAgregar.controls['contrasena'].dirty"  class="alert alert-success" role="alert">
+          <div *ngIf="formularioAgregar.controls['contrasena'].errors?.required">Contraseña es requerido</div>
+          <div *ngIf="formularioAgregar.controls['contrasena'].errors?.minlength">Contraseña debe ser mayor o igual a 8 caracteres</div>
+      </div>
   
         <div class="form__field">
-          <input type="submit" value="Iniciar Sesion">
+          <input [disabled]="!formularioAgregar.valid" type="submit" value="Iniciar Sesion" (click)="login()">
         </div>
   
       </form>
   
-      <p class="text--center">Aun no eres miembro? <a href="/register" style="color: blue;">Registrate!</a> <svg class="icon">
+      <p class="text--center">Aun no eres miembro? <a [routerLink]="[ '/register' ]" style="color: blue;">Registrate!</a> <svg class="icon">
           <use xlink:href="#icon-arrow-right"></use>
         </svg></p>
   

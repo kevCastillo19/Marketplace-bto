@@ -1,7 +1,7 @@
 {
-    "SelectImagenes": "SELECT * FROM IMAGEN",
-    "SelectImagen": "SELECT * FROM IMAGEN WHERE idProducto=?",
-    "InsertarImagen": "INSERT INTO IMAGEN(idProducto,urlImage) VALUES(?,?)",
+    "SelectImagenes": "SELECT * FROM imagen",
+    "SelectImagen": "SELECT * FROM imagen WHERE idProducto=?",
+    "InsertarImagen": "INSERT INTO imagen(idProducto,urlImage) VALUES(?,?)",
     "DeleteImagen": "delete from imagen where idImagen=?",
-    "UpdateImagen": "UPDATE IMAGEN SET idProducto=?, urlImage=? where idImagen=?"
+    "UpdateImagen": "UPDATE imagen SET idProducto=?, urlImage=? where idImagen=?"
 }
