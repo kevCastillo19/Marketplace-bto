@@ -13,6 +13,8 @@ import { ItemCompraUserComponent } from './item-compra-user/item-compra-user.com
 import { MiBolsaUserComponent } from './mi-bolsa-user/mi-bolsa-user.component';
 import { ActualizarProductoComponent } from './actualizar-producto/actualizar-producto.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductosComponent } from './productos/productos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,14 @@ import { HttpClientModule } from '@angular/common/http';
     ItemCompraUserComponent,
     MiBolsaUserComponent,
     ActualizarProductoComponent,
+    ProductosComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
