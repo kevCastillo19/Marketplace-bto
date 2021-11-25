@@ -30,12 +30,13 @@
             class="texto"><br>{{producto.descProducto}}</b></h5>
         <h5 class="profile__stats__info" id="precioProducto">Precio del Producto:&nbsp;<b >${{producto.precioProducto}}</b> </h5>
         <h5 class="profile__stats__info" id="stockProducto">Stock del Producto:&nbsp;<b class="texto">{{producto.stockProducto}}</b> </h5>
-        <h5 class="profile__stats__info" id="idCategoria">Categoria:&nbsp;<b class="texto">{{producto.idCategoria}}</b></h5>
+        <h5 class="profile__stats__info" id="idCategoria">Categoria:&nbsp;<b class="texto"  >{{producto.idCategoria}}</b></h5>
 
       </div>
-      <button > </button>
       <div class="profile__cta"><a href="/item-compra" class="button" style="color: black">Ver Mas</a></div>
-      <div class="profile__cta"><a (click)="getProducto(producto.idProducto)" href="/actualizar-producto" class="button" style="color: black">Actualizar</a></div>
+      <div class="profile__cta"><a (click)="updateProducto(producto)"  class="button" style="color: black">Actualizar</a></div>
+      <!--<div class="profile__cta"><button type="submit" (click)="updateProducto(producto)" class="btn btn-dark">Actualizar</button></div>
+      <div class="profile__cta"><button type="submit" (click)="eliminarProducto(producto.idProducto)" class="btn btn-dark">Eliminar</button></div>-->
     </div>
   </section>
 

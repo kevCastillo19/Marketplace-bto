@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Producto } from '../models/producto';
 import { environment } from '../../environments/environment'
+import { Categoria } from '../models/categoria';
 
 
 @Injectable({
@@ -16,10 +17,16 @@ export class ProductoService {
     return this.http.get<Producto[]>(this.url + 'Producto/consultar-producto')
   }
 
+  getCategorias() {
+    return this.http.get<Categoria[]>(this.url + 'Categoria/consultar-categoria')
+  }
   public agregarProducto(obj: Producto) {
     return this.http.post<Producto>(this.url + 'Producto/agregar-producto', obj);
   }
-  public getProducto(idProducto:number){
-    return this.http.get<Producto>(this.url+`Producto/actualizar-producto/${idProducto}` )
+  public updateProducto(obj: Producto) {
+    return this.http.put<Producto>(this.url + 'Producto/actualizar-producto/', obj)
+  }
+  public deleteProducto(idProducto:number){
+    return this.http.delete<any>(this.url+`Producto/eliminar-producto/${idProducto}` )
   }
 }

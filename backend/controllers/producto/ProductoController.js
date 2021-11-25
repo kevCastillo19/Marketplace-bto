@@ -54,7 +54,7 @@ router.delete('/eliminar-producto/:idProducto', function (req, res) {
 
     }
 
-    service.eliminarProducto()
+    service.eliminarProducto(idProducto)
         .then(result => {
             respuesta.mensaje = mensajes.MensajeDeleted
             res.status(200).json(respuesta)

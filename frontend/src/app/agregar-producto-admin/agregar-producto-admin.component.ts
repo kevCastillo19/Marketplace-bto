@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Categoria } from '../models/categoria';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
 
@@ -10,6 +11,8 @@ import { ProductoService } from '../service/producto.service';
 })
 export class AgregarProductoAdminComponent implements OnInit {
   productos: Producto[] = [];
+  producto: Producto = new Producto();
+
   productoForm = new FormGroup({
     nombreProducto: new FormControl(''),
     descProducto: new FormControl(''),
@@ -18,13 +21,46 @@ export class AgregarProductoAdminComponent implements OnInit {
     idCategoria: new FormControl(''),
   })
 
-  constructor(private service: ProductoService) { }
+  categorias: Categoria[] = [];
+
+
+
+  constructor(private service: ProductoService, private fb: FormBuilder) {
+
+    this.productoForm = this.fb.group({
+      nombreProducto: [''],
+      descProducto: [''],
+      precioProducto: [''],
+      stockProducto: [''],
+      idCategoria: ['']
+    });
+  }
 
   ngOnInit(): void {
+    this.getCategorias();
+    this.productoForm = this.fb.group({
+      nombreProducto: [''],
+      descProducto: [''],
+      precioProducto: [''],
+      stockProducto: [''],
+      idCategoria: ['']
+    });
+  }
 
+  private getCategorias(): void {
+    this.service.getCategorias().subscribe(res => {
+      console.log(res)
+      this.categorias = res
+    }, error => {
+      console.log(error)
+    })
   }
 
   public agregarProducto() {
+    //this.producto = this.productoForm
+    
+    this.producto=this.productoForm.value as Producto;
+    console.log(this.producto)
     this.service.agregarProducto(this.productoForm.value)
       .subscribe(res => {
         this.productos.push(res)
@@ -35,5 +71,5 @@ export class AgregarProductoAdminComponent implements OnInit {
   }
 
 
-  
+
 }

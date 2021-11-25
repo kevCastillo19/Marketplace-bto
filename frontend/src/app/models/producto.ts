@@ -1,5 +1,5 @@
 export class Producto {
-    idProducto?:number= 0;
+    idProducto:number= 0;
     nombreProducto:string = '';
     descProducto:string = '';
     precioProducto:number = 0.0;

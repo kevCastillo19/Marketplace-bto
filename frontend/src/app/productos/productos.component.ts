@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Categoria } from '../models/categoria';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
 
@@ -11,8 +13,9 @@ import { ProductoService } from '../service/producto.service';
 export class ProductosComponent implements OnInit {
 
   productos: Producto[] = [];
+  
   producto: Producto = new Producto();
-  idProducto:number=0;
+  idProducto: number = 0;
   productoForm = new FormGroup({
     nombreProducto: new FormControl(''),
     descProducto: new FormControl(''),
@@ -20,14 +23,15 @@ export class ProductosComponent implements OnInit {
     stockProducto: new FormControl(''),
     idCategoria: new FormControl(''),
   })
-
-  constructor(private service: ProductoService) { }
+  categorias: Categoria[] = [];
+  constructor(private service: ProductoService, private ruta: Router) { }
 
   ngOnInit(): void {
     this.getProductos();
+    this.getCategorias();
   }
- 
-  private getProductos():void {
+
+  private getProductos(): void {
     this.service.getProductos().subscribe(res => {
       console.log(res)
       this.productos = res
@@ -35,16 +39,40 @@ export class ProductosComponent implements OnInit {
       console.log(error)
     })
   }
-
-  public getProducto(idProducto: any) {
-    this.service.getProducto(idProducto).subscribe(res => {
-     const {idProducto, nombreProducto,descProducto,precioProducto, stockProducto,idCategoria} = res;
-     
-      this.idProducto = idProducto || 0;
-      this.productoForm.setValue({nombreProducto,descProducto,
-        precioProducto, stockProducto,idCategoria})
+  private getCategorias(): void {
+    this.service.getCategorias().subscribe(res => {
+      console.log(res)
+      this.categorias = res
     }, error => {
       console.log(error)
     })
   }
+  /*public updateProducto(Producto: any) {
+    this.service.updateProducto(Producto).subscribe(res => {
+     const {nombreProducto,descProducto,precioProducto, stockProducto,idCategoria,idProducto} = res;
+      console.log(res)
+     this.idProducto = Producto || 0;
+    this.productoForm.setValue({nombreProducto,descProducto,
+     precioProducto, stockProducto,idCategoria})
+
+     this.ruta.navigate(['actualizar-producto',{producto:JSON.stringify(Producto)}]);
+    }, error => {
+      console.log(error)
+    })
+  }*/
+
+  updateProducto(obj: Producto) {
+    this.producto = obj
+    this.ruta.navigate(['actualizar-producto', { producto: JSON.stringify(this.producto) }]);
+  }
+
+  eliminarProducto(idProducto: number) {
+    this.service.deleteProducto(idProducto).subscribe(res => {
+      console.log(res)
+
+    }, error => {
+      console.log(error)
+    })
+  }
+
 }
