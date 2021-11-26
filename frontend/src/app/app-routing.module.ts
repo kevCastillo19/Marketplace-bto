@@ -11,15 +11,18 @@ import { ProductosComponent } from './productos/productos.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductoService } from './service/producto.service';
 
+
+
 const routes: Routes = [
 {
-  path: '', redirectTo: 'productos', pathMatch: 'full'
+  path: '', redirectTo: 'login', pathMatch: 'full'
 },
+
 {
-  path: '',component:ProductosComponent
+  path: '',component:LoginComponent
 },
   {
-    path: 'login',component: LoginComponent
+    path: 'productos',component: ProductosComponent
   },
   {
     path: 'register',component: RegisterComponent

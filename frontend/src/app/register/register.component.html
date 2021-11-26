@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="/assets/css/login_style.css">
-
+<style>
+  body{
+    padding-top: 10%;
+  }
+  </style>
 <body class="align">
 
     <div class="grid">
@@ -59,12 +63,12 @@
         </div>
 
         <div class="form__field">
-          <input [disabled]="!formularioAgregar.valid" (click)="registrar()" type="submit" value="Sign In">
+          <input [disabled]="!formularioAgregar.valid" (click)="registrar()" type="submit" value="Registrate">
         </div>
   
       </form>
   
-      <p class="text--center">Ya eres miembro? <a [routerLink]="[ '/login' ]">Inicia Sesion!</a> <svg class="icon">
+      <p class="text--center">Ya eres miembro? <a [routerLink]="[ '/' ]">Inicia Sesion!</a> <svg class="icon">
           <use xlink:href="#icon-arrow-right"></use>
         </svg></p>
   

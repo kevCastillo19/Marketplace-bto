@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       console.log(response);
       this.toastr.success('Hola!', 'Bienvenido a MarketPlace');
       console.log(this.usuarioService.getRole()); 
-      this.router.navigate(['/']);
+      this.router.navigate(['/productos']);
     },
     error => {
       console.log(error);
