@@ -33,8 +33,6 @@
         <h5 class="profile__stats__info" id="idCategoria">Categoria:&nbsp;<b class="texto"  >{{producto.idCategoria}}</b></h5>
 
       </div>
-      <div class="profile__cta"><a href="/item-compra" class="button" style="color: black">Ver Mas</a></div>
-      <div *ngIf="idRol != 2" class="profile__cta"><a (click)="updateProducto(producto)"  class="button" style="color: black">Actualizar</a></div>
       <form>
         <p class="clasificacion">
           <input id="radio1" type="radio" name="estrellas" value="5"><!--
@@ -53,7 +51,7 @@
       <div class="profile__cta"><button type="submit" (click)="eliminarProducto(producto.idProducto)" class="btn btn-dark">Eliminar</button></div>-->
       <button > </button>
       <div class="profile__cta"><a (click)="verProducto(producto)" class="button" style="color: black">Ver Mas</a></div>
-      <div class="profile__cta"><a (click)="getProducto(producto.idProducto)" href="/actualizar-producto" class="button" style="color: black">Actualizar</a></div>
+      <div class="profile__cta"><a (click)="updateProducto(producto)" class="button" style="color: black">Actualizar</a></div>
     </div>
   </section>
 

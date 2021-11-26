@@ -47,7 +47,7 @@ router.post('/agregar-usuario', validador.validate(validador.usuarioValidacion),
             respuesta.mensaje = mensajes.mensajeError
             res.status(500);
     })
-    res.json(respuesta);
+    //res.json(respuesta);
 });
 
 router.put('/actualizar-usuario', validador.validate(validador.usuarioUpdateValidacion), (req, res)=>{
