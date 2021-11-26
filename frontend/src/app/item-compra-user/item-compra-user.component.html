@@ -8,11 +8,11 @@
   <title>Document</title>
 </head>
 <style>
-  .alert {
+  /*.alert {
     width: 50%;
     margin-left: 25%;
     margin-top: -15rem;
-  }
+  }*/
 
   main {
     margin-right: 500px;
@@ -32,9 +32,9 @@
 
 <body>
 
-  <div class="alert alert-success" role="alert">
+  <!--<div class="alert alert-success" role="alert">
     Agregaste <b>*nombre del item*</b> a tu bolsa!. <a href="/bolsa">Ver mi Bolsa</a>
-  </div>
+  </div>-->
 
   <div class="container">
 
@@ -48,22 +48,19 @@
       <div class="overlay-container">
 
         <h5 id="idCategoria" style="font-weight:initial;">*Categoria del producto*</h5>
-        <h5 id="nombreProducto">Nombre: *nombre producto*</h5>
-        <h5 id="descProducto">Descripcion: Descripcion del producto Descripcion del producto Descripcion del producto
-          Descripcion del producto Descripcion del producto Descripcion del producto Descripcion del producto
-          Descripcion del producto</h5>
+        <h5 id="nombreProducto">Nombre: {{producto.nombreProducto}}</h5>
+        <h5 id="descProducto">Descripcion: {{producto.descProducto}}</h5>
 
-        <h5 style="font-weight:lighter;" id="stockProducto">Stock: *Stock*</h5>
+        <h5 style="font-weight:lighter;" id="stockProducto">Stock: {{producto.stockProducto}}</h5>
 
         <div style="text-align: left ; padding-top: 2%;">
-          <b style="font-weight:lighter; font-size: 20px; " id="precioProducto">$*Precio Producto*  |  </b>
-          <b style="font-weight:lighter; font-size: 20px;" id="idProducto">*Id del Producto* </b> 
-         
+          <b style="font-weight:lighter; font-size: 20px; " id="precioProducto">Precio: ${{producto.precioProducto}}</b>
+
         </div>
 
 
         <button type="submit" >Agregar al Carrito</button>
-        
+
 
       </div>
     </form>

@@ -7,7 +7,7 @@
         <option value="value3">Value 3</option>
       </select>
     </ul>
-  
+
 
 
 <input class="variation" id="pinkaru" type="radio" value="5" name="color" />
@@ -16,7 +16,7 @@
 
 <main>
 
-  <section *ngFor="let producto of productos; index as i;"> 
+  <section *ngFor="let producto of productos; index as i;">
     <div class="profile profile-default">
       <div class="profile__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png" alt="Doggo" />
       </div>
@@ -51,6 +51,9 @@
       </form>
       <!--<div class="profile__cta"><button type="submit" (click)="updateProducto(producto)" class="btn btn-dark">Actualizar</button></div>
       <div class="profile__cta"><button type="submit" (click)="eliminarProducto(producto.idProducto)" class="btn btn-dark">Eliminar</button></div>-->
+      <button > </button>
+      <div class="profile__cta"><a (click)="verProducto(producto)" class="button" style="color: black">Ver Mas</a></div>
+      <div class="profile__cta"><a (click)="getProducto(producto.idProducto)" href="/actualizar-producto" class="button" style="color: black">Actualizar</a></div>
     </div>
   </section>
 
