@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../service/usuario.service';
 
 
 @Component({
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  idRol:number=0;
+
+  constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit(): void {
+    this.idRol = this.usuarioService.getRole();
   }
 
 }

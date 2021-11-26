@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Categoria } from '../models/categoria';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-productos',
@@ -12,6 +13,7 @@ import { ProductoService } from '../service/producto.service';
 })
 export class ProductosComponent implements OnInit {
 
+  idRol:number=0;
   productos: Producto[] = [];
   
   producto: Producto = new Producto();
@@ -24,9 +26,11 @@ export class ProductosComponent implements OnInit {
     idCategoria: new FormControl(''),
   })
   categorias: Categoria[] = [];
-  constructor(private service: ProductoService, private ruta: Router) { }
+  constructor(private service: ProductoService, private ruta: Router, private usuarioService:UsuarioService) { }
+
 
   ngOnInit(): void {
+    this.idRol = this.usuarioService.getRole();
     this.getProductos();
     this.getCategorias();
   }

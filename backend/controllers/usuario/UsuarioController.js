@@ -17,10 +17,11 @@ router.post('/agregar-usuario', validador.validate(validador.usuarioValidacion),
     let telefonoUsuario = req.body.telefonoUsuario;
     let direccion = req.body.direccion;
     let idRol = req.body.idRol;
-
+    console.log(req.body);
     let respuesta = {
         status: 200,
-        mensaje: ""
+        mensaje: "",
+        id:0
     }
 
     if (!validador.validarDatos(nombreUsuario) || !validador.validarDatos(correoUsuario)
@@ -36,8 +37,9 @@ router.post('/agregar-usuario', validador.validate(validador.usuarioValidacion),
     service.agregarUsuario(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol)
     .then(data=>{
         console.log('agrega', data.insertId);
-        respuesta.mensaje = mensajes.mensajeOK
-        res.status(200);
+        respuesta.mensaje = mensajes.mensajeOK;
+        respuesta.id = data.insertId;
+        res.status(200).send(respuesta);
     })
     .catch(err=>{
         respuesta.status = 500;
@@ -142,6 +144,26 @@ router.get('/consultar-usuarioDetalle/:idUsuario', function (req, res) {
             res.status(500).json(err)
         })
 });
+
+function autenticarToken(req, res, next) {
+
+    const authHeader = req.headers.authorization
+    console.log(authHeader);
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (token == null) return res.status(401).json({"Mensaje":"Debe iniciar sesion"})
+
+    jwt.verify(token, TOKEN_SECRET, (err, user) => {
+        console.log(user)
+
+        if (err) return res.status(401).json({"Mensaje":"Debe iniciar sesion"})
+
+        req.user = user
+
+        next();
+    })
+
+}
 
 function generarJWT(usuario) {
     // return jwt.sign(userName, TOKEN_SECRET, { expiresIn: 60 * 60 })
