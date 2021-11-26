@@ -8,7 +8,37 @@ const validador = require('../../servicios/Validate')
 
 const TOKEN_SECRET = "bytheone$2021";
 
+const axios = require('axios').default;
+
 var router = express.Router();
+
+router.get('/consultar-euro', function (req, res) {
+    axios({
+        method: 'get',
+        url: 'https://v6.exchangerate-api.com/v6/6b03a4bfdb7e536c8a419f10/pair/USD/EUR',
+        responseType: 'json'
+    })
+    .then(result => {
+        res.status(200).json(result.data)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+});
+
+router.get('/consultar-bitcoin', function (req, res) {
+    axios({
+        method: 'get',
+        url: 'https://api.coindesk.com/v1/bpi/currentprice.json',
+        responseType: 'json'
+    })
+    .then(result => {
+        res.status(200).json(result.data)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+});
 
 router.get('/consultar-conversiones', function (req, res) {
     service.seleccionarConversiones()
