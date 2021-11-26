@@ -48,9 +48,9 @@ export class RegisterComponent implements OnInit {
       }
       this.formularioAgregar.reset();
     },
-    error => {
+    (error:any) => {
       this.showNotAuthorizedMessage("Sucedió un problema al registrar usuario","No se registró")
-      console.log(error);
+      console.log("Error: ",error);
     }
     );
 

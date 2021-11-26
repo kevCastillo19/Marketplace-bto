@@ -22,10 +22,10 @@
       <div class=""></div>
       <form class="form-inline my-2 my-lg-0">
 
-        <a href="/mi-bolsa" class="carrito" ><i style=" margin: 5px; "
+        <a [routerLink]="[ '/mi-bolsa']" class="carrito" ><i style=" margin: 5px; "
             class="fas fa-dolly fa-lg"></i><b>Mi Carrito</b></a>
             
-        <a href="/login" class="user" style="text-decoration: none;     font-size:20px;"><b> Mi Cuenta</b></a>
+        <a [routerLink]="[ '/login']" class="user" style="text-decoration: none;     font-size:20px;"><b> Mi Cuenta</b></a>
 
       </form>
 
@@ -42,7 +42,7 @@
       </ul>
       <form class="form-inline my-0">
 
-      <a href="/agregar-producto-admin" id="user2" class="user" style="text-decoration: none;  gap: 12rem;   font-size:20px;"><b> Agregar Producto</b></a>
+      <a *ngIf="idRol != 2" [routerLink]="[ '/agregar-producto-admin' ]" id="user2" class="user" style="text-decoration: none;  gap: 12rem;   font-size:20px;"><b> Agregar Producto</b></a>
  
       <a href="/agregar-imagen-admin" id="user2" class="user" style="text-decoration: none;   font-size:20px;"><b> Agregar Imagen Producto</b></a>
      </form>

@@ -20,11 +20,13 @@ export class UsuarioService {
     return this.http.post(this.url+'Usuario/login-usuario', params, {headers: headers});
   }
 
-  registro(usuario:any){
+  registro(usuario:Usuario){
+    var token =JSON.parse( this.getToken('token')) ;
     let params = JSON.stringify(usuario);
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-
-    return this.http.post(this.url+'Usuario/agregar-usuario', params, {headers: headers});
+    console.log(params);
+    //let headers = new HttpHeaders({'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token.token });
+    let headers = new HttpHeaders().set('Authorization', 'Bearer '+token.token);
+    return this.http.post<Usuario>(this.url+'Usuario/agregar-usuario', usuario, {headers: headers});
   }
 
   saveToken(key: string, token: string){
@@ -38,7 +40,7 @@ export class UsuarioService {
 
 getToken(key:string){
   try{
-      return localStorage.getItem(key);
+      return localStorage.getItem(key) as string;
   }catch(error){
     console.log("getToken", error);
   }

@@ -35,7 +35,7 @@
       </div>
       <button > </button>
       <div class="profile__cta"><a href="/item-compra" class="button" style="color: black">Ver Mas</a></div>
-      <div class="profile__cta"><a (click)="getProducto(producto.idProducto)" href="/actualizar-producto" class="button" style="color: black">Actualizar</a></div>
+      <div *ngIf="idRol != 2" class="profile__cta"><a (click)="getProducto(producto.idProducto)" href="/actualizar-producto" class="button" style="color: black">Actualizar</a></div>
     </div>
   </section>
 
