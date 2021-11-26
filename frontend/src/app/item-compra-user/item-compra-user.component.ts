@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Producto } from '../models/producto';
 
 @Component({
   selector: 'app-item-compra-user',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemCompraUserComponent implements OnInit {
 
-  constructor() { }
+  producto: Producto = new Producto();
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.producto = JSON.parse(this.route.snapshot.params.producto);
   }
 
 }

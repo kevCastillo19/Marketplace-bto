@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -21,12 +22,12 @@ export class ProductosComponent implements OnInit {
     idCategoria: new FormControl(''),
   })
 
-  constructor(private service: ProductoService) { }
+  constructor(private service: ProductoService, private ruta: Router) { }
 
   ngOnInit(): void {
     this.getProductos();
   }
- 
+
   private getProductos():void {
     this.service.getProductos().subscribe(res => {
       console.log(res)
@@ -39,12 +40,17 @@ export class ProductosComponent implements OnInit {
   public getProducto(idProducto: any) {
     this.service.getProducto(idProducto).subscribe(res => {
      const {idProducto, nombreProducto,descProducto,precioProducto, stockProducto,idCategoria} = res;
-     
+
       this.idProducto = idProducto || 0;
       this.productoForm.setValue({nombreProducto,descProducto,
         precioProducto, stockProducto,idCategoria})
     }, error => {
       console.log(error)
     })
+  }
+
+  public verProducto(productoP: Producto){
+    this.producto = productoP;
+    this.ruta.navigate(['item-compra',{producto:JSON.stringify(productoP)}]);
   }
 }
