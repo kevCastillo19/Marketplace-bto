@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Producto } from '../models/producto';
 import { environment } from '../../environments/environment'
 import { Categoria } from '../models/categoria';
+import { Imagen } from '../models/imagen';
 
 
 @Injectable({
@@ -28,5 +29,8 @@ export class ProductoService {
   }
   public deleteProducto(idProducto:number){
     return this.http.delete<any>(this.url+`Producto/eliminar-producto/${idProducto}` )
+  }
+  public agregarImagen(obj: Producto){
+    return this.http.post<Imagen>(this.url + 'Imagen/agregar-imagen', obj);
   }
 }

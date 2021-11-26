@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Categoria } from '../models/categoria';
+import { Imagen } from '../models/imagen';
+import { Producto } from '../models/producto';
+import { ProductoService } from '../service/producto.service';
 
 @Component({
   selector: 'app-agregar-imagen-admin',
@@ -7,9 +13,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarImagenAdminComponent implements OnInit {
 
-  constructor() { }
+  productos: Producto[] = [];
+  imagen: Producto = new Producto();
+  productoNew: Producto = new Producto();
+  imagenForm = new FormGroup({
+  
+    nombreProducto: new FormControl(''),
+    descProducto: new FormControl(''),
+    precioProducto: new FormControl(''),
+    stockProducto: new FormControl(''),
+    idCategoria: new FormControl(''),
+    idProducto: new FormControl('')
+  })
+  categorias: Categoria[] = [];
+
+
+
+  constructor(private service: ProductoService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.imagen = JSON.parse(this.route.snapshot.params.producto);
+    console.log(this.imagen);
   }
+
+  public actualizarProducto() {
+    this.service.updateProducto(this.imagenForm.value)
+      .subscribe(res => {
+        this.productos.push(res)
+        this.imagenForm.reset('');
+      }, error => {
+        console.log(error)
+      });
+  }
+
 
 }
