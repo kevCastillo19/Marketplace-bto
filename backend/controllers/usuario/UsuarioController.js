@@ -39,7 +39,7 @@ router.post('/agregar-usuario', validador.validate(validador.usuarioValidacion),
         console.log('agrega', data.insertId);
         respuesta.mensaje = mensajes.mensajeOK;
         respuesta.id = data.insertId;
-        res.status(200).send(respuesta);
+        res.json({"status":200,"mensaje":"Se agregó correctamente","id":data.insertId});
     })
     .catch(err=>{
         respuesta.status = 500;
@@ -47,7 +47,7 @@ router.post('/agregar-usuario', validador.validate(validador.usuarioValidacion),
             respuesta.mensaje = mensajes.mensajeError
             res.status(500);
     })
-    res.json(respuesta);
+    //res.json(respuesta);
 });
 
 router.put('/actualizar-usuario', validador.validate(validador.usuarioUpdateValidacion), (req, res)=>{

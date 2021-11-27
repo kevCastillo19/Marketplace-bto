@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.idRol = this.usuarioService.getRole();
+    console.log(this.idRol);
   }
 
 }

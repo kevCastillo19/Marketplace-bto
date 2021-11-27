@@ -42,7 +42,7 @@
       </ul>
       <form class="form-inline my-0">
 
-      <a *ngIf="idRol != 2" [routerLink]="[ '/agregar-producto-admin' ]" id="user2" class="user" style="text-decoration: none;  gap: 12rem;   font-size:20px;"><b> Agregar Producto</b></a>
+      <a *ngIf="idRol == 1" [routerLink]="[ '/agregar-producto-admin' ]" id="user2" class="user" style="text-decoration: none;  gap: 12rem;   font-size:20px;"><b> Agregar Producto</b></a>
  
       <a href="/agregar-imagen-admin" id="user2" class="user" style="text-decoration: none;   font-size:20px;"><b> Agregar Imagen Producto</b></a>
      </form>
