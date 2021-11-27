@@ -143,6 +143,20 @@ function ventaValidacion(data) {
     schema.validateSync(data);
 }
 
+/* Validacion para conversion */
+function conversionValidacion(data) {
+    console.log(data);
+    const schema = yup.object().shape({
+        numVenta: yup.number().positive().required(),
+        tipoMoneda: yup.string().required(),
+        valorMoneda: yup.number().positive().required(),
+        montoIngresado: yup.number().positive().required(),
+        fechaConversion: yup.date().required(),
+    });
+    
+    schema.validateSync(data);
+}
+
 module.exports = {
     validarDatos: validarDatos,
     validate,
@@ -155,5 +169,6 @@ module.exports = {
     imagenUpdateValidacion,
     usuarioValidacion,
     valoracionValidacion,
-    ventaValidacion
+    ventaValidacion,
+    conversionValidacion,
 }

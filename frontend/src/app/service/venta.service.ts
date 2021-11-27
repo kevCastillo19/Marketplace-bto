@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Venta } from '../models/venta';
 import { UsuarioService } from './usuario.service';
 import { DetalleVenta } from '../models/detalleVenta';
+import { Conversion } from '../models/conversion';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class VentaService {
     let params = JSON.stringify(detalle);
     console.log(params);
     return this.http.post<DetalleVenta>(this.url+'DetalleVenta/agregar-detalleventa', detalle);
+  }
+
+  registroConversion(conversion: Conversion){
+    return this.http.post<Conversion>(this.url+'Conversion/agregar-conversion', conversion);
   }
 }
