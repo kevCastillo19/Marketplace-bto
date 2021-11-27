@@ -16,7 +16,7 @@ import { ItemCompraUserComponent } from './item-compra-user/item-compra-user.com
 import { MiBolsaUserComponent } from './mi-bolsa-user/mi-bolsa-user.component';
 import { ActualizarProductoComponent } from './actualizar-producto/actualizar-producto.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask';
 import { ProductosComponent } from './productos/productos.component';
@@ -39,6 +39,7 @@ import { ProductosComponent } from './productos/productos.component';
   imports: [
     CommonModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
