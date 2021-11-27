@@ -49,4 +49,27 @@ export class CarritoService {
     }
     return getCarrito;
   }
+
+  guardarCompraDB(compraDB: any[]){
+    localStorage.setItem('compraDB', JSON.stringify(compraDB));
+  }
+  guardarCompraView(compraView: any[]){
+    localStorage.setItem('compraView', JSON.stringify(compraView));
+  }
+
+  get compraView(): any[]{
+    let getCompraView: any[] = JSON.parse(localStorage.getItem('compraView') || 'null');
+    if(getCompraView == null){
+      return new Array<any>();
+    }
+    return getCompraView;
+  }
+
+  get compraDB(): any[]{
+    let getcompraDB: any[] = JSON.parse(localStorage.getItem('compraDB') || 'null');
+    if(getcompraDB == null){
+      return new Array<any>();
+    }
+    return getcompraDB;
+  }
 }

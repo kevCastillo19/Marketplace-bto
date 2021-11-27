@@ -10,6 +10,7 @@ import { MiBolsaUserComponent } from './mi-bolsa-user/mi-bolsa-user.component';
 import { ProductosComponent } from './productos/productos.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductoService } from './service/producto.service';
+import { CompraComponent } from './compra/compra.component';
 
 
 
@@ -41,6 +42,9 @@ const routes: Routes = [
   },
   {
     path: 'mi-bolsa',component: MiBolsaUserComponent
+  },
+  {
+    path: 'compra',component: CompraComponent
   }
 ];
 

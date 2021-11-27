@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../service/carrito.service';
 import { Producto } from '../models/producto';
 import {NgForm} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mi-bolsa-user',
@@ -15,7 +16,9 @@ export class MiBolsaUserComponent implements OnInit {
   precioUniTotal:number = 0;
   //cant:number = 0;
   detalles:any[] =[];
-  constructor(public carritoService: CarritoService) {
+  compraDB:any[] = [];
+  compraView:any[] = [];
+  constructor(public carritoService: CarritoService, public ruta: Router) {
   }
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class MiBolsaUserComponent implements OnInit {
     this.productos.forEach(element => {
       this.total += element.precioProducto;
       this.detalles.push({
+        idProducto:element.idProducto,
         nombreProducto:element.nombreProducto,
         desProducto:element.descProducto,
         precio:element.precioProducto,
@@ -54,4 +58,22 @@ export class MiBolsaUserComponent implements OnInit {
     console.log(this.detalles);
   }
 
+  comprar(){
+    this.detalles.forEach((element, index) => {
+      this.compraDB.push({
+        idProducto:element.idProducto,
+        cantidad:element.cant,
+        total:element.total,
+      })
+      this.compraView.push({
+        nombreProducto:element.nombreProducto,
+        precio:element.precio,
+        cantidad:element.cant,
+        total:element.total,
+      })
+    });
+    this.carritoService.guardarCompraDB(this.compraDB);
+    this.carritoService.guardarCompraView(this.compraView);
+    this.ruta.navigate(['compra']);
+  }
 }
