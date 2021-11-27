@@ -133,6 +133,7 @@ function valoracionValidacion(data) {
 
 /* Validacion para ventas */
 function ventaValidacion(data) {
+    console.log(data);
     const schema = yup.object().shape({
         fechaVenta: yup.date().required(),
         totalVenta: yup.number().positive().required(),

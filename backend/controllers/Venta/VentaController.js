@@ -36,11 +36,12 @@ router.post('/agregar-venta',autenticarToken, validador.validate(validador.venta
     let fechaVenta = req.body.fechaVenta;
     let totalVenta = req.body.totalVenta;
     let idUsuario = req.body.idUsuario;
+    console.log(req.body);
 
     let respuesta = {
         status: 200,
         mensaje: "",
-        id
+        id: 0,
     }
 
     if (!validador.validarDatos(fechaVenta) || !validador.validarDatos(totalVenta) || !validador.validarDatos(idUsuario)) {

@@ -14,12 +14,17 @@ import { DetalleVenta } from '../models/detalleVenta';
 export class CompraComponent implements OnInit {
 
   views: any[] = [];
-  detalles: any[] = [];
+  detalles: any[] = [{
+    numVenta: 0,
+    idProducto: 0,
+    cantidad: 0,
+    total: 0,
+  }];
   usuario:Usuario = new Usuario();
   venta:Venta = new Venta();
   detalleVenta:DetalleVenta=new DetalleVenta();
   totalG:number = 0;
-  constructor(public carritoService: CarritoService, 
+  constructor(public carritoService: CarritoService,
     private usuarioService: UsuarioService, private ventaService:VentaService) { }
 
   ngOnInit(): void {
@@ -41,28 +46,29 @@ export class CompraComponent implements OnInit {
   getCompraDB(){
     this.detalles = this.carritoService.compraDB;
     console.log(this.detalles)
-
   }
 
   registrarVenta(){
-    
+
     let total:number = 0;
     for(let dt of this.views){
-      
+
       total+=dt.total;
     }
-    
+
     this.venta.fechaVenta= new Date();
     this.venta.idUsuario=this.usuario.idUsuario as number;
     this.venta.totalVenta=total;
     console.log(this.venta);
     this.ventaService.registroVenta(this.venta).subscribe((res:any)=>{
       if (res.status == 200) {
-        
+        this.detalleVenta.numVenta = res.id;
         this.detalles.forEach(detalle=>{
-
-          console.log(detalle);
-          this.ventaService.registroDetalle(detalle).subscribe((resDetalle:any)=>{
+          this.detalleVenta.idProducto = detalle.idProducto;
+          this.detalleVenta.cantidadProducto = detalle.cantidad;
+          this.detalleVenta.total = detalle.total;
+          console.log(this.detalleVenta);
+          this.ventaService.registroDetalle(this.detalleVenta).subscribe((resDetalle:any)=>{
             if (resDetalle.status == 200) {
               console.log("se agregó detalle");
             } else {

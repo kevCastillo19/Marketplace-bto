@@ -117,12 +117,15 @@ insert into valoracion(idUsuario, idProducto, calificacion) values(2,1,3);
 
 create table conversion(
 	idConversion integer primary key auto_increment,
+    numVenta integer,
     tipoMoneda varchar(50),
     valorMoneda float,
     montoIngresado float,
     fechaConversion date,
-    FOREIGN KEY(idConversion) references venta(numVenta)
+    FOREIGN KEY(numVenta) references venta(numVenta)
 );
+
+drop table conversion;
 
 insert into conversion(tipoMoneda, valorMoneda,montoIngresado,fechaConversion) values('Euro', 1.25, 95.99,sysdate());
 

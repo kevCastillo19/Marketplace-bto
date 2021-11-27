@@ -18,12 +18,12 @@ export class VentaService {
     console.log(params);
     //let headers = new HttpHeaders({'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token.token });
     let headers = new HttpHeaders().set('Authorization', 'Bearer '+token.token);
-    return this.http.post<Venta>(this.url+'Venta/agregar-venta', params, {headers: headers});
+    return this.http.post<Venta>(this.url+'Venta/agregar-venta', venta, {headers: headers});
   }
 
   registroDetalle(detalle: DetalleVenta){
     let params = JSON.stringify(detalle);
     console.log(params);
-    return this.http.post<DetalleVenta>(this.url+'DetalleVenta/agregar-detalleventa', params);
+    return this.http.post<DetalleVenta>(this.url+'DetalleVenta/agregar-detalleventa', detalle);
   }
 }
