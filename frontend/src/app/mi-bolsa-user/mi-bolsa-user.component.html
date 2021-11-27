@@ -11,7 +11,7 @@
   body {
 
     margin-top: -10rem;
-
+    height: 100vh;
   }
 </style>
 
@@ -24,44 +24,56 @@
 
 
         <div class="col-md-12">
-          <table id="example" class="table table-striped table-bordered nowrap " style="width: 100%">
+          <table id="example" class="table table-striped table-bordered nowrap " style="width: 100%; margin-bottom: 250px;">
             <thead>
               <tr>
 
                 <th>Producto</th>
-                <th></th>
-                <th class="col-md-1 col-md-1">Precio</th>
+                <th class="col-md-2 col-md-2">Precio Unitario</th>
                 <th class="col-md-1 col-md-1">Cantidad</th>
-                <th>Categoria</th>
+                <th class="col-md-2 col-md-2">Precio Total</th>
+                <th class="col-md-2 col-md-2">Borrar</th>
 
               </tr>
             </thead>
             <tbody>
 
-              <tr style="background-color: white;">
+              <tr style="background-color: white;" *ngFor="let producto of productos">
 
-                <td><img src="/assets/images/laptop.png" style="width: 100px;height: 75px; "></td>
                 <td>
                   <div style="color: rgb(16, 77, 167);">
-                    <b> *nombre del producto*</b>
+                    <b>{{producto.nombreProducto}}</b>
                   </div>
                   <div>
-                    <p> esta es una descripcion del producto para ver si no
-                      se desconfigura la babosada de la celda de la tabla y parece que no se desconfigura, nais</p>
+                    <p>{{producto.descProducto}}</p>
                   </div>
                 </td>
-                <td id="precioProducto">$5 peso</td>
+                <td id="precioProducto">${{producto.precioProducto}}</td>
                 <td>
                   <div align="center">
-                    <input style="width: 80%;" type="number" id="stockProducto" min="0" placeholder="0">
+                    <input style="width: 80%;" type="number" id="stockProducto" min="1" max="{{producto.stockProducto}}" value="1" placeholder="0">
                   </div>
                 </td>
-                <td>*categoria*</td>
-
+                <td id="precioProducto">$</td>
+                <td id="precioProducto">
+                  <div class="form__field">
+                    <input type="submit" value="X" (click)="borrarProductoCarrito(producto.idProducto)">
+                  </div>
+                </td>
 
               </tr>
 
             </tbody>
+            <tfoot>
+              <tr>
+
+                <th>Total</th>
+                <th class="col-md-2 col-md-2"></th>
+                <th class="col-md-1 col-md-1"></th>
+                <th class="col-md-2 col-md-2">{{precioTotal()}}</th>
+
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>

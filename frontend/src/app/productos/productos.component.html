@@ -9,7 +9,7 @@
         <option value="value3">Value 3</option>
       </select>
     </ul>
-  
+
 
 
 <input class="variation" id="pinkaru" type="radio" value="5" name="color" />
@@ -18,7 +18,7 @@
 
 <main>
 
-  <section *ngFor="let producto of productos; index as i;"> 
+  <section *ngFor="let producto of productos; index as i;">
     <div class="profile profile-default">
       <div class="profile__image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png" alt="Doggo" />
       </div>
@@ -35,7 +35,7 @@
         <h5 class="profile__stats__info" id="idCategoria">Categoria:&nbsp;<b class="texto"  >{{producto.idCategoria}}</b></h5>
 
       </div>
-      <div class="profile__cta"><a href="/item-compra" class="button" style="color: black">Ver Mas</a></div>
+      <div class="profile__cta"><a (click)="verProducto(producto)" class="button" style="color: black">Ver Mas</a></div>
       <div *ngIf="idRol != 2" id="user2" class="profile__cta"><a (click)="updateProducto(producto)"  class="button" style="color: black">Actualizar</a></div><br>
       <form>
         <p class="clasificacion">

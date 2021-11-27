@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   formularioAgregar:FormGroup;
   usuario:Usuario = new Usuario();
   constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private toastr: ToastrService,
-    private router: Router) { 
+    private router: Router) {
     this.formularioAgregar=this.fb.group({
       correoUsuario:['',Validators.compose([Validators.required, Validators.email])],
       contrasena:['',Validators.compose([Validators.required,Validators.minLength(4)])]
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear();
     this.formularioAgregar=this.fb.group({
       correoUsuario:['',Validators.compose([Validators.required, Validators.email])],
       contrasena:['',Validators.compose([Validators.required,Validators.minLength(4)])]
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.usuarioService.saveToken('token',response as string);
       console.log(response);
       this.toastr.success('Hola!', 'Bienvenido a MarketPlace');
-      console.log(this.usuarioService.getRole()); 
+      console.log(this.usuarioService.getRole());
       this.router.navigate(['/productos']);
     },
     error => {

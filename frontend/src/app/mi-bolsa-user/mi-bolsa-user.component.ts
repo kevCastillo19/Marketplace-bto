@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CarritoService } from '../service/carrito.service';
+import { Producto } from '../models/producto';
 
 @Component({
   selector: 'app-mi-bolsa-user',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiBolsaUserComponent implements OnInit {
 
-  constructor() { }
+  productos: Producto[] = [];
+  total:number = 0;
+
+  constructor(public carritoService: CarritoService) { }
 
   ngOnInit(): void {
+    this.getCarrito();
+  }
+
+  getCarrito(){
+    this.productos = this.carritoService.carritoLocalStorage;
+  }
+
+  public precioTotal(){
+    this.productos.forEach(element => {
+      this.total += element.precioProducto;
+    });
+    return this.total
+  }
+
+  borrarProductoCarrito(idProductoP:number){
+    this.carritoService.borrarProducto(idProductoP);
+    this.getCarrito();
   }
 
 }
