@@ -16,13 +16,20 @@
               <td>
                   <b>{{view.nombreProducto}}</b>
               </td>
-              <td>{{view.cant}}</td>
-              <td><p>${{view.precio}}</p></td>
+              <td>${{view.precio}}</td>
+              <td><p>{{view.cantidad}}</p></td>
               <td>${{view.total}}</td>
             </tr>
           </tbody>
         </table>
+        <div class="row">
+          <div class="col-md-2"><p>Total</p></div>
+          <div class="col-md-8"></div>
+          <div class="col-md-1"><p>{{totalG}}</p></div>
+          <div class="col-md-1"><input type="button" value="Comprar" (click)="registrarVenta()"></div>
+        </div>
       </div>
+      
     </div>
   </div>
 </section>

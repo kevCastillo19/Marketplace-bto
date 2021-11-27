@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask';
 import { ProductosComponent } from './productos/productos.component';
+import { CompraComponent } from './compra/compra.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ProductosComponent } from './productos/productos.component';
     MiBolsaUserComponent,
     ActualizarProductoComponent,
     ProductosComponent,
+    CompraComponent
 
   ],
   imports: [

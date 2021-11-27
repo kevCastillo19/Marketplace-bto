@@ -99,7 +99,7 @@ router.post('/login-usuario', validador.validate(validador.loginValidacion), fun
 
             };
             if (result.length > 0) {
-                var token = generarJWT({nombreUsuario:result[0].nombreUsuario, correoUsuario:result[0].correoUsuario, contrasena:result[0].contrasena, telefonoUsuario:result[0].telefonoUsuario, direccion:result[0].direccion, idRol:result[0].idRol});
+                var token = generarJWT({idUsuario:result[0].idUsuario,nombreUsuario:result[0].nombreUsuario, correoUsuario:result[0].correoUsuario, contrasena:result[0].contrasena, telefonoUsuario:result[0].telefonoUsuario, direccion:result[0].direccion, idRol:result[0].idRol});
                 res.status(200).json({token})
             }else{
               res.status(500).json({"status":500,

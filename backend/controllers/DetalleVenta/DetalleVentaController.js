@@ -43,7 +43,7 @@ router.post('/agregar-detalleventa', validador.validate(validador.detalleVentaVa
     service.agregarDetalleVenta(numVenta, idProducto, cantidadProducto, total)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
-        res.status(200);
+        res.json(respuesta);
     })
     .catch(err=>{
         respuesta.status = 500;
@@ -51,7 +51,7 @@ router.post('/agregar-detalleventa', validador.validate(validador.detalleVentaVa
             respuesta.mensaje = mensajes.mensajeError
             res.status(500);
     })
-    res.json(respuesta);
+    //res.json(respuesta);
 });
 
 module.exports=router;

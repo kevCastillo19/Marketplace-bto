@@ -32,14 +32,15 @@ router.get('/consultar-ultimaventa', function (req, res) {
         })
 });
 
-router.post('/agregar-venta', validador.validate(validador.ventaValidacion), (req, res)=>{
+router.post('/agregar-venta',autenticarToken, validador.validate(validador.ventaValidacion), (req, res)=>{
     let fechaVenta = req.body.fechaVenta;
     let totalVenta = req.body.totalVenta;
     let idUsuario = req.body.idUsuario;
 
     let respuesta = {
         status: 200,
-        mensaje: ""
+        mensaje: "",
+        id
     }
 
     if (!validador.validarDatos(fechaVenta) || !validador.validarDatos(totalVenta) || !validador.validarDatos(idUsuario)) {
@@ -51,16 +52,37 @@ router.post('/agregar-venta', validador.validate(validador.ventaValidacion), (re
 
     service.agregarVenta(fechaVenta,totalVenta,idUsuario)
     .then(data=>{
+        respuesta.id = data.insertId;
         respuesta.mensaje = mensajes.mensajeOK
-        res.status(200);
+        res.json(respuesta);
     })
     .catch(err=>{
+        
         respuesta.status = 500; 
             respuesta.mensaje = mensajes.mensajeError
             res.status(500);
     })
-    res.json(respuesta);
+    //res.json(respuesta);
 
 });
+function autenticarToken(req, res, next) {
+
+    const authHeader = req.headers.authorization
+    console.log(authHeader);
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if (token == null) return res.status(401).json({"Mensaje":"Debe iniciar sesion"})
+
+    jwt.verify(token, TOKEN_SECRET, (err, user) => {
+        console.log(user)
+
+        if (err) return res.status(401).json({"Mensaje":"Debe iniciar sesion"})
+
+        req.user = user
+
+        next();
+    })
+
+}
 
 module.exports=router;
