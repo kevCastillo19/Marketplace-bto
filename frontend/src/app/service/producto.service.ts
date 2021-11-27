@@ -22,6 +22,7 @@ export class ProductoService {
     return this.http.get<Categoria[]>(this.url + 'Categoria/consultar-categoria')
   }
   public agregarProducto(obj: Producto) {
+    console.log("service",obj);
     return this.http.post<Producto>(this.url + 'Producto/agregar-producto', obj);
   }
   public updateProducto(obj: Producto) {
