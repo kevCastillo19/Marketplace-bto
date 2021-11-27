@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Producto } from '../models/producto';
+import { CarritoService } from '../service/carrito.service';
 
 @Component({
   selector: 'app-item-compra-user',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemCompraUserComponent implements OnInit {
 
-  constructor() { }
+  producto: Producto = new Producto();
+
+  constructor(private route: ActivatedRoute, public carritoService: CarritoService) { }
 
   ngOnInit(): void {
+    this.producto = JSON.parse(this.route.snapshot.params.producto);
+  }
+
+  agregarCarrito(){
+    this.carritoService.guardarProductoCarrito(this.producto);
   }
 
 }

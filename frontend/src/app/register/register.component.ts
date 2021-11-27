@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   formularioAgregar:FormGroup;
   usuario:Usuario = new Usuario();
   constructor(private fb:FormBuilder, private usuarioService:UsuarioService, private toastr: ToastrService,
-    private router: Router) { 
+    private router: Router) {
     this.formularioAgregar=this.fb.group({
       nombreUsuario:['',Validators.required],
       correoUsuario:['',Validators.compose([Validators.required, Validators.email])],
@@ -35,13 +35,13 @@ export class RegisterComponent implements OnInit {
   }
 
   registrar(){
-    
+
     this.usuario=this.formularioAgregar.value as Usuario;
     this.usuario.idRol=2;
     console.log(this.usuario);
 
     this.usuarioService.registro(this.usuario).subscribe((response:any) => {
-      console.log(response);
+      console.log(response.id);
       if (response.status == 200) {this.showAuthorizedMessage("Te has registrado exitosamente","Exito!");
       }else{
         this.showNotAuthorizedMessage(response.mensaje,"Error")

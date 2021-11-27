@@ -15,7 +15,7 @@ export class ProductosComponent implements OnInit {
 
   idRol:number=0;
   productos: Producto[] = [];
-  
+
   producto: Producto = new Producto();
   idProducto: number = 0;
   productoForm = new FormGroup({
@@ -73,10 +73,11 @@ export class ProductosComponent implements OnInit {
   eliminarProducto(idProducto: number) {
     this.service.deleteProducto(idProducto).subscribe(res => {
       console.log(res)
-
-    }, error => {
-      console.log(error)
     })
   }
 
+  public verProducto(productoP: Producto){
+    this.producto = productoP;
+    this.ruta.navigate(['item-compra',{producto:JSON.stringify(productoP)}]);
+  }
 }

@@ -75,14 +75,15 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
 
     let respuesta = {
         status: 200,
-        mensaje: ""
+        mensaje: "",
+        id: 0
     }
 
     if (!validador.validarDatos(nombreProducto) || !validador.validarDatos(descProducto)
      || !validador.validarDatos(precioProducto) || !validador.validarDatos(stockProducto) 
      || !validador.validarDatos(idCategoria)) {
         respuesta.status = 400;
-        respuesta.mensaje = mensajes.MensajeValidador
+        respuesta.mensaje = mensajes.MensajeValidador;
 
         return res.status(400).json(respuesta);
 
@@ -91,7 +92,8 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
     service.agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
-        res.status(200);
+        respuesta.id = data.insertId;
+        res.status(200).send(respuesta);
     })
     .catch(err=>{
         respuesta.status = 500;
@@ -99,7 +101,7 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
             respuesta.mensaje = mensajes.mensajeError
             res.status(500);
     })
-    res.json(respuesta);
+    //res.json(respuesta);
 });
 
 router.put('/actualizar-producto', validador.validate(validador.productoUpdateValidacion), (req, res)=>{

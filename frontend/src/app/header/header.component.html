@@ -9,46 +9,48 @@
 
 </head>
 
+
 <body>
+  <div id="barra">
 
-  <main>
-    <header class="version-1">
+    <main>
+      <header class="version-1">
 
-      <nav>
-        <ul>
-          <a href="/"><img src="/assets/images/logo.png " style="height:100px;"></a>
-        </ul>
-      </nav>
+        <nav>
+          <ul>
+            <a href="/productos"><img src="/assets/images/logo.png " style="height:100px;"></a>
+          </ul>
+        </nav>
+        <div class=""></div>
+        <form class="form-inline my-2 my-lg-0">
+
+          <a [routerLink]="[ '/mi-bolsa']" class="carrito"><i style=" margin: 5px; "
+              class="fas fa-dolly fa-lg"></i><b>Mi Carrito</b></a>
+
+          <a [routerLink]="[ '/']" class="user" style="text-decoration: none;     font-size:20px;"><b> Mi
+              Cuenta</b></a>
+
+        </form>
+
+      </header>
+    </main>
+
+
+
+
+    <header class="version-2" style="background-color: #035AA7;">
       <div class=""></div>
-      <form class="form-inline my-2 my-lg-0">
-
-        <a [routerLink]="[ '/mi-bolsa']" class="carrito" ><i style=" margin: 5px; "
-            class="fas fa-dolly fa-lg"></i><b>Mi Carrito</b></a>
-            
-        <a [routerLink]="[ '/login']" class="user" style="text-decoration: none;     font-size:20px;"><b> Mi Cuenta</b></a>
-
-      </form>
-
-    </header>
-  </main>
-
-
-
-
-  <header class="version-2" style="background-color: #035AA7;">
-    <div class=""></div> 
       <ul>
-       
+
       </ul>
       <form class="form-inline my-0">
 
-      <a *ngIf="idRol == 1" [routerLink]="[ '/agregar-producto-admin' ]" id="user2" class="user" style="text-decoration: none;  gap: 12rem;   font-size:20px;"><b> Agregar Producto</b></a>
- 
-      <a href="/agregar-imagen-admin" id="user2" class="user" style="text-decoration: none;   font-size:20px;"><b> Agregar Imagen Producto</b></a>
-     </form>
-  </header>
+        <a *ngIf="idRol != 2" [routerLink]="[ '/agregar-producto-admin' ]" id="user2" class="user"
+          style="text-decoration: none;  gap: 12rem;   font-size:20px;"><b> Agregar Producto</b></a>
+      </form>
+    </header>
+  </div>
 
 </body>
-
 
 </html>
