@@ -13,7 +13,7 @@ export class MiBolsaUserComponent implements OnInit {
   productos: Producto[] = [];
   total:number = 0;
   precioUniTotal:number = 0;
-  cant:number = 0;
+  //cant:number = 0;
   detalles:any[] =[];
   constructor(public carritoService: CarritoService) {
   }
@@ -33,7 +33,11 @@ export class MiBolsaUserComponent implements OnInit {
       this.total += element.precioProducto;
       this.detalles.push({
         nombreProducto:element.nombreProducto,
-        desProducto:element.descProducto
+        desProducto:element.descProducto,
+        precio:element.precioProducto,
+        stock:element.stockProducto,
+        total:0,
+        cant:0
       });
     });
     this.total
@@ -44,9 +48,10 @@ export class MiBolsaUserComponent implements OnInit {
     this.getCarrito();
   }
 
-  calcularTotal(event:any,precio:any){
-    console.log(event, this.precioUniTotal);
-    this.precioUniTotal = event * precio;
+  calcularTotal(event:any,precio:any,i:any){
+    console.log(event, this.precioUniTotal,i);
+    this.detalles[i].total = event * precio;
+    console.log(this.detalles);
   }
 
 }
