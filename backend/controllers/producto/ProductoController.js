@@ -72,7 +72,7 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
     let precioProducto = req.body.precioProducto;
     let stockProducto = req.body.stockProducto;
     let idCategoria = req.body.idCategoria;
-
+    console.log(req.body);
     let respuesta = {
         status: 200,
         mensaje: "",
