@@ -51,8 +51,8 @@
                 <td id="precioProducto">${{producto.precioProducto}}</td>
                 <td>
                   <div align="center">
-                    <input #cant="ngModel"
-                    [ngModel]="cant" style="width: 80%;"(ngModelChange)="calcularTotal($event,producto.precioProducto)"  type="number" id="stockProducto" min="1" max="{{producto.stockProducto}}" value="1" placeholder="0">
+                    <input #canti="ngModel"
+                    [(ngModel)]="cant" style="width: 80%;" (ngModelChange)="calcularTotal($event,producto.precioProducto)"  type="number" id="stockProducto" min="1" max="{{producto.stockProducto}}" value="1">
                   </div>
                 </td>
                 <td id="precioProducto">${{precioUniTotal}}</td>

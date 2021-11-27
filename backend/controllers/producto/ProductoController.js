@@ -93,7 +93,7 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
         respuesta.id = data.insertId;
-        res.status(200).send(respuesta);
+        res.json({"status":200,"mensaje":"Se agrego correctamente","id":data.insertId});
     })
     .catch(err=>{
         respuesta.status = 500;

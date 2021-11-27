@@ -13,6 +13,8 @@ export class MiBolsaUserComponent implements OnInit {
   productos: Producto[] = [];
   total:number = 0;
   precioUniTotal:number = 0;
+  cant:number = 0;
+  detalles:any[] =[];
   constructor(public carritoService: CarritoService) {
   }
 
@@ -29,6 +31,10 @@ export class MiBolsaUserComponent implements OnInit {
     this.total = 0;
     this.productos.forEach(element => {
       this.total += element.precioProducto;
+      this.detalles.push({
+        nombreProducto:element.nombreProducto,
+        desProducto:element.descProducto
+      });
     });
     this.total
   }

@@ -84,7 +84,7 @@ export class AgregarProductoAdminComponent implements OnInit {
     this.producto = this.productoForm.value as Producto;
     console.log(this.producto)
     this.service.agregarProducto(this.producto).subscribe((response: any) => {
-      console.log(response.id);
+      console.log(response);
       if (response.status == 200) {
         this.showAuthorizedMessage("Producto agregado exitosamente", "Exito!");
         this.ruta.navigate(['agregar-imagen-admin', { producto: JSON.stringify(this.producto) }]);
