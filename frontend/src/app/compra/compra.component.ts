@@ -49,13 +49,10 @@ export class CompraComponent implements OnInit {
   }
 
   registrarVenta(){
-
     let total:number = 0;
     for(let dt of this.views){
-
       total+=dt.total;
     }
-
     this.venta.fechaVenta= new Date();
     this.venta.idUsuario=this.usuario.idUsuario as number;
     this.venta.totalVenta=total;
