@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../service/carrito.service';
 import { Producto } from '../models/producto';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,16 +14,25 @@ export class MiBolsaUserComponent implements OnInit {
   productos: Producto[] = [];
   total:number = 0;
   precioUniTotal:number = 0;
-  //cant:number = 0;
+  stockForm: FormGroup;
   detalles:any[] =[];
   compraDB:any[] = [];
   compraView:any[] = [];
-  constructor(public carritoService: CarritoService, public ruta: Router) {
+  constructor(public carritoService: CarritoService, public ruta: Router,private fb: FormBuilder) {
+
+    this.stockForm = this.fb.group({
+      stockProducto: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+     
+    })
   }
 
   ngOnInit(): void {
     this.getCarrito();
     this.precioTotal();
+    this.stockForm = this.fb.group({
+      stockProducto: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+     
+    })
   }
 
   getCarrito(){

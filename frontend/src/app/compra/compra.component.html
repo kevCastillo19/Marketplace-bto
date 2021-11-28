@@ -21,15 +21,21 @@
               <td>${{view.total}}</td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+
+              <th>Total</th>
+              <th class="col-md-2 col-md-2"></th>
+              <th class="col-md-1 col-md-1"></th>
+              <th class="col-md-2 col-md-2">{{totalG}}</th>
+
+            </tr>
+          </tfoot>
         </table>
-        <div class="row">
-          <div class="col-md-2"><p>Total</p></div>
-          <div class="col-md-8"></div>
-          <div class="col-md-1"><p>{{totalG}}</p></div>
-        </div>
+        
       </div>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Comprar
+        Finalizar Compra
       </button>
 
       <!-- Modal -->
@@ -51,7 +57,7 @@
                       <div class="card-body">
                         <h5 class="card-title">Total en Dolar</h5>
                         <p class="card-text">{{total}}</p>
-                        <a class="btn btn-primary" (click)="registrarVenta('dolar')" data-bs-dismiss="modal">Pagar con Dolar</a>
+                        <a class="btn btn-primary" (click)="registrarVenta('dolar')" data-bs-dismiss="modal" style="color: white;">Pagar con Dolar</a>
                       </div>
                     </div>
                   </div>
@@ -63,7 +69,7 @@
                       <div class="card-body">
                         <h5 class="card-title">Total en Bitcoin</h5>
                         <p class="card-text">{{total/bitcoin.rate_float}}</p>
-                        <a class="btn btn-primary" (click)="registrarVenta('bitcoin')" data-bs-dismiss="modal">Pagar con Bitcoin</a>
+                        <a class="btn btn-primary" (click)="registrarVenta('bitcoin')" data-bs-dismiss="modal" style="color: white;">Pagar con Bitcoin</a>
                       </div>
                     </div>
                   </div>
@@ -75,7 +81,7 @@
                       <div class="card-body">
                         <h5 class="card-title">Total en Euro</h5>
                         <p class="card-text">{{total*euro.conversion_rate}}</p>
-                        <a class="btn btn-primary" (click)="registrarVenta('euro')" data-bs-dismiss="modal">Pagar con Euro</a>
+                        <a class="btn btn-primary" (click)="registrarVenta('euro')" data-bs-dismiss="modal" style="color: white;">Pagar con Euro</a>
                       </div>
                     </div>
                   </div>

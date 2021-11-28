@@ -28,11 +28,25 @@ a {
 	margin: 15px 0;
 }
 
-button {
+#agregar {
     margin-top: 10%;
 	border-radius: 10px 10px 10px 10px;
 	border: 1px solid #fedd3a;
 	background-color: #fedd3a;
+	color: #1f1f1f;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+  
+}
+
+#producto {
+    margin-top: 10%;
+	border-radius: 10px 10px 10px 10px;
+	
 	color: #1f1f1f;
 	font-size: 12px;
 	font-weight: bold;
@@ -195,4 +209,43 @@ form#login-form:before, form#login-form:after {
     -moz-box-shadow: 0 9.6em 0 0 rgba(128, 128, 128, 0.3);
     -webkit-box-shadow: 0 9.6em 0 0 rgba(128, 128, 128, 0.3);
     box-shadow: 0 9.6em 0 0 rgba(128, 128, 128, 0.3);
+  }
+
+
+
+
+
+  
+  #form {
+margin-right: 60%;
+
+
+  }
+  
+
+  
+  #form label {
+    font-size: 20px;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  label {
+    color: grey;
+  }
+  
+  .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+  label:hover,
+  label:hover ~ label {
+    color: orange;
+  }
+  
+  input[type="radio"]:checked ~ label {
+    color: orange;
   }

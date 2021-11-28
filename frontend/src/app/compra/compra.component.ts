@@ -156,7 +156,7 @@ export class CompraComponent implements OnInit {
       }
     },
     (error:any)=>{
-      this.showNotAuthorizedMessage("No se pudo completar la compra","Error");
+      this.showNotAuthorizedMessage("No se pudo completar la compra, no puede ir la cantidad en 0","Error");
       console.log("No se agregó Venta ",error);
     }
     );
