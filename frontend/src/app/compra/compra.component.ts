@@ -9,6 +9,7 @@ import { Euro } from '../models/euro';
 import { ConversionService } from '../service/conversion.service';
 import { Bitcoin } from '../models/bitcoin';
 import { Conversion } from '../models/conversion';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-compra',
@@ -36,7 +37,7 @@ export class CompraComponent implements OnInit {
   total:number = 0;
 
 
-  constructor(public carritoService: CarritoService,
+  constructor(public carritoService: CarritoService, private toastr: ToastrService,
     private usuarioService: UsuarioService, private ventaService:VentaService, private conversionService: ConversionService) { }
 
   ngOnInit(): void {
@@ -140,16 +141,26 @@ export class CompraComponent implements OnInit {
           },
           (errorConversion:any)=>{
             console.log("No se agregó la conversion");
-          })
+          });this.showAuthorizedMessage("Acabas de realizar tu compra","Exito");
         }
       } else {
+        this.showNotAuthorizedMessage("No se pudo completar la compra","Error");
         console.log("error venta");
       }
     },
     (error:any)=>{
+      this.showNotAuthorizedMessage("No se pudo completar la compra","Error");
       console.log("No se agregó Venta ",error);
     }
     );
+  }
+
+  showAuthorizedMessage(mensaje: string, titulo: string) {
+    this.toastr.success(mensaje, titulo);
+  }
+
+  showNotAuthorizedMessage(mensaje: string, titulo: string) {
+    this.toastr.error(mensaje, titulo);
   }
 
 }
