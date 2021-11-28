@@ -22,7 +22,7 @@ export class MiBolsaUserComponent implements OnInit {
 
     this.stockForm = this.fb.group({
       stockProducto: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-     
+
     })
   }
 
@@ -31,7 +31,7 @@ export class MiBolsaUserComponent implements OnInit {
     this.precioTotal();
     this.stockForm = this.fb.group({
       stockProducto: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-     
+
     })
   }
 
@@ -68,21 +68,30 @@ export class MiBolsaUserComponent implements OnInit {
   }
 
   comprar(){
-    this.detalles.forEach((element, index) => {
-      this.compraDB.push({
-        idProducto:element.idProducto,
-        cantidad:element.cant,
-        total:element.total,
-      })
-      this.compraView.push({
-        nombreProducto:element.nombreProducto,
-        precio:element.precio,
-        cantidad:element.cant,
-        total:element.total,
-      })
+    let contador = 0;
+    this.detalles.forEach((element) => {
+      if (element.cant==0) {
+        contador++;
+      }
     });
-    this.carritoService.guardarCompraDB(this.compraDB);
-    this.carritoService.guardarCompraView(this.compraView);
-    this.ruta.navigate(['compra']);
-  }
+    if (contador === 0) {
+      this.detalles.forEach((element) => {
+        this.compraDB.push({
+          idProducto:element.idProducto,
+          cantidad:element.cant,
+          total:element.total,
+        })
+        this.compraView.push({
+          nombreProducto:element.nombreProducto,
+          precio:element.precio,
+          cantidad:element.cant,
+          total:element.total,
+        })
+        this.carritoService.guardarCompraDB(this.compraDB);
+        this.carritoService.guardarCompraView(this.compraView);
+        this.ruta.navigate(['compra']);
+    })} else {
+      alert('Los productos no pueden ir en cantidad cero');
+    }
+}
 }
