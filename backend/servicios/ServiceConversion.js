@@ -10,9 +10,9 @@ function seleccionarConversiones() {
     });
 }
 
-function agregarConversion(numVenta, tipoMoneda, valorMoneda, montoIngresado, fechaConversion){
+function agregarConversion(numVenta, tipoMoneda, valorMoneda, montoIngresado){
     return new Promise((resolve, reject)=>{
-        conexion.query(propertiesConsulta.InsertConversion,[numVenta, tipoMoneda, valorMoneda, montoIngresado, fechaConversion],(err,resultado)=>{
+        conexion.query(propertiesConsulta.InsertConversion,[numVenta, tipoMoneda, valorMoneda, montoIngresado],(err,resultado)=>{
             if(err) reject(err)
             else { 
                 resolve(resultado)

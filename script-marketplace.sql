@@ -111,7 +111,7 @@ create table valoracion(
     primary key(idUsuario,idProducto)
 );
 
-insert into valoracion(idUsuario, idProducto, calificacion) values(1,1,5);
+insert into valoracion(idUsuario, idProducto, calificacion) values(1,5,5);
 insert into valoracion(idUsuario, idProducto, calificacion) values(1,2,4);
 insert into valoracion(idUsuario, idProducto, calificacion) values(2,1,3);
 
@@ -121,9 +121,9 @@ create table conversion(
     tipoMoneda varchar(50),
     valorMoneda float,
     montoIngresado float,
-    fechaConversion date,
     FOREIGN KEY(numVenta) references venta(numVenta)
 );
+select * from conversion;
 
 drop table conversion;
 

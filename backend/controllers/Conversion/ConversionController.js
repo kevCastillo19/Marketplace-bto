@@ -33,7 +33,7 @@ router.get('/consultar-bitcoin', function (req, res) {
         responseType: 'json'
     })
     .then(result => {
-        res.status(200).json(result.data)
+        res.status(200).json(result.data.bpi.USD)
     })
     .catch(err => {
         res.status(500).json(err)
@@ -56,7 +56,6 @@ router.post('/agregar-conversion',validador.validate(validador.conversionValidac
     let tipoMoneda = req.body.tipoMoneda;
     let valorMoneda = req.body.valorMoneda;
     let montoIngresado = req.body.montoIngresado;
-    let fechaConversion = req.body.fechaConversion;
 
     let respuesta = {
         status: 200,
@@ -64,7 +63,7 @@ router.post('/agregar-conversion',validador.validate(validador.conversionValidac
     }
 
     if (!validador.validarDatos(numVenta) || !validador.validarDatos(tipoMoneda) || !validador.validarDatos(valorMoneda) 
-    || !validador.validarDatos(montoIngresado) || !validador.validarDatos(fechaConversion)) {
+    || !validador.validarDatos(montoIngresado)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador
 
@@ -72,7 +71,7 @@ router.post('/agregar-conversion',validador.validate(validador.conversionValidac
 
     }
 
-    service.agregarConversion(numVenta, tipoMoneda, valorMoneda, montoIngresado, fechaConversion)
+    service.agregarConversion(numVenta, tipoMoneda, valorMoneda, montoIngresado)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
         res.status(200);

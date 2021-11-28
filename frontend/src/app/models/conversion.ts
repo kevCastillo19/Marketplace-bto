@@ -4,7 +4,6 @@ export class Conversion {
   tipoMoneda:string='';
   valorMoneda:number=0;
   montoIngresado:number=0;
-  fechaConversion:Date = new Date();
 
 
   constructor() {
@@ -12,7 +11,6 @@ export class Conversion {
     this.numVenta=this.numVenta,
     this.tipoMoneda=this.tipoMoneda,
     this.valorMoneda=this.valorMoneda,
-    this.montoIngresado=this.montoIngresado,
-    this.fechaConversion=this.fechaConversion
+    this.montoIngresado=this.montoIngresado
   }
 }

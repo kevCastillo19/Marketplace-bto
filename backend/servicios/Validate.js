@@ -151,7 +151,6 @@ function conversionValidacion(data) {
         tipoMoneda: yup.string().required(),
         valorMoneda: yup.number().positive().required(),
         montoIngresado: yup.number().positive().required(),
-        fechaConversion: yup.date().required(),
     });
     
     schema.validateSync(data);
