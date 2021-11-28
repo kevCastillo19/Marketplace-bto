@@ -133,10 +133,25 @@ function valoracionValidacion(data) {
 
 /* Validacion para ventas */
 function ventaValidacion(data) {
+    console.log(data);
     const schema = yup.object().shape({
         fechaVenta: yup.date().required(),
         totalVenta: yup.number().positive().required(),
         idUsuario: yup.number().integer().positive().required(),
+    });
+    
+    schema.validateSync(data);
+}
+
+/* Validacion para conversion */
+function conversionValidacion(data) {
+    console.log(data);
+    const schema = yup.object().shape({
+        numVenta: yup.number().positive().required(),
+        tipoMoneda: yup.string().required(),
+        valorMoneda: yup.number().positive().required(),
+        montoIngresado: yup.number().positive().required(),
+        fechaConversion: yup.date().required(),
     });
     
     schema.validateSync(data);
@@ -154,5 +169,6 @@ module.exports = {
     imagenUpdateValidacion,
     usuarioValidacion,
     valoracionValidacion,
-    ventaValidacion
+    ventaValidacion,
+    conversionValidacion,
 }

@@ -51,7 +51,8 @@ router.get('/consultar-conversiones', function (req, res) {
         })
 });
 
-router.post('/agregar-conversion', (req, res)=>{
+router.post('/agregar-conversion',validador.validate(validador.conversionValidacion), (req, res)=>{
+    let numVenta = req.body.numVenta;
     let tipoMoneda = req.body.tipoMoneda;
     let valorMoneda = req.body.valorMoneda;
     let montoIngresado = req.body.montoIngresado;
@@ -62,7 +63,7 @@ router.post('/agregar-conversion', (req, res)=>{
         mensaje: ""
     }
 
-    if (!validador.validarDatos(tipoMoneda) || !validador.validarDatos(valorMoneda) 
+    if (!validador.validarDatos(numVenta) || !validador.validarDatos(tipoMoneda) || !validador.validarDatos(valorMoneda) 
     || !validador.validarDatos(montoIngresado) || !validador.validarDatos(fechaConversion)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador
@@ -71,7 +72,7 @@ router.post('/agregar-conversion', (req, res)=>{
 
     }
 
-    service.agregarConversion(tipoMoneda, valorMoneda, montoIngresado, fechaConversion)
+    service.agregarConversion(numVenta, tipoMoneda, valorMoneda, montoIngresado, fechaConversion)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
         res.status(200);
