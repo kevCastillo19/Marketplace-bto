@@ -51,7 +51,7 @@
                       <div class="card-body">
                         <h5 class="card-title">Total en Dolar</h5>
                         <p class="card-text">{{total}}</p>
-                        <a class="btn btn-primary" (click)="registrarVenta('dolar')">Pagar con Dolar</a>
+                        <a class="btn btn-primary" (click)="registrarVenta('dolar')" data-bs-dismiss="modal">Pagar con Dolar</a>
                       </div>
                     </div>
                   </div>
@@ -63,7 +63,7 @@
                       <div class="card-body">
                         <h5 class="card-title">Total en Bitcoin</h5>
                         <p class="card-text">{{total/bitcoin.rate_float}}</p>
-                        <a class="btn btn-primary" (click)="registrarVenta('bitcoin')">Pagar con Bitcoin</a>
+                        <a class="btn btn-primary" (click)="registrarVenta('bitcoin')" data-bs-dismiss="modal">Pagar con Bitcoin</a>
                       </div>
                     </div>
                   </div>
@@ -75,7 +75,7 @@
                       <div class="card-body">
                         <h5 class="card-title">Total en Euro</h5>
                         <p class="card-text">{{total*euro.conversion_rate}}</p>
-                        <a class="btn btn-primary" (click)="registrarVenta('euro')">Pagar con Euro</a>
+                        <a class="btn btn-primary" (click)="registrarVenta('euro')" data-bs-dismiss="modal">Pagar con Euro</a>
                       </div>
                     </div>
                   </div>

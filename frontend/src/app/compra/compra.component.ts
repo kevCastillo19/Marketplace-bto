@@ -10,6 +10,8 @@ import { ConversionService } from '../service/conversion.service';
 import { Bitcoin } from '../models/bitcoin';
 import { Conversion } from '../models/conversion';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { Producto } from '../models/producto';
 
 @Component({
   selector: 'app-compra',
@@ -36,8 +38,7 @@ export class CompraComponent implements OnInit {
   totalG:number = 0;
   total:number = 0;
 
-
-  constructor(public carritoService: CarritoService, private toastr: ToastrService,
+  constructor(public carritoService: CarritoService, private toastr: ToastrService, public ruta: Router,
     private usuarioService: UsuarioService, private ventaService:VentaService, private conversionService: ConversionService) { }
 
   ngOnInit(): void {
@@ -71,6 +72,7 @@ export class CompraComponent implements OnInit {
       console.log(error)
     })
   }
+
   getBitcoin(): void {
     this.conversionService.getBitcoin().subscribe(res => {
       console.log(res)
@@ -85,7 +87,6 @@ export class CompraComponent implements OnInit {
     this.detalles = this.carritoService.compraDB;
     console.log(this.detalles)
   }
-
 
   registrarVenta(conversion:string){
     this.venta.fechaVenta= new Date();
@@ -141,8 +142,14 @@ export class CompraComponent implements OnInit {
           },
           (errorConversion:any)=>{
             console.log("No se agregó la conversion");
-          });this.showAuthorizedMessage("Acabas de realizar tu compra","Exito");
+          });
+
         }
+        this.showAuthorizedMessage("Acabas de realizar tu compra","Exito");
+        localStorage.removeItem('carrito');
+        localStorage.removeItem('compraView');
+        localStorage.removeItem('compraDB');
+        this.ruta.navigate(['productos']);
       } else {
         this.showNotAuthorizedMessage("No se pudo completar la compra","Error");
         console.log("error venta");
