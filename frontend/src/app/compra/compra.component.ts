@@ -5,6 +5,7 @@ import { CarritoService } from '../service/carrito.service';
 import { UsuarioService } from '../service/usuario.service';
 import { VentaService } from '../service/venta.service';
 import { DetalleVenta } from '../models/detalleVenta';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-compra',
@@ -20,7 +21,7 @@ export class CompraComponent implements OnInit {
   detalleVenta:DetalleVenta=new DetalleVenta();
   totalG:number = 0;
   constructor(public carritoService: CarritoService, 
-    private usuarioService: UsuarioService, private ventaService:VentaService) { }
+    private usuarioService: UsuarioService, private ventaService:VentaService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getCompraView();
@@ -73,15 +74,25 @@ export class CompraComponent implements OnInit {
             console.log("No se agregó detalle venta");
           }
           );
-        });
+        });this.showAuthorizedMessage("Acabas de realizar tu compra","Exito");
       } else {
+        this.showNotAuthorizedMessage("No se pudo completar la compra","Error");
         console.log("error venta");
       }
     },
     (error:any)=>{
+      this.showNotAuthorizedMessage("No se pudo completar la compra","Error");
       console.log("No se agregó Venta ",error);
     }
     );
+  }
+
+  showAuthorizedMessage(mensaje: string, titulo: string) {
+    this.toastr.success(mensaje, titulo);
+  }
+
+  showNotAuthorizedMessage(mensaje: string, titulo: string) {
+    this.toastr.error(mensaje, titulo);
   }
 
 }
