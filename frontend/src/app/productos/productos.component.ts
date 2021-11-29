@@ -15,6 +15,7 @@ export class ProductosComponent implements OnInit {
 
   idRol:number=0;
   productos: Producto[] = [];
+  selection:number=0;
 
   producto: Producto = new Producto();
   idProducto: number = 0;
@@ -75,9 +76,29 @@ export class ProductosComponent implements OnInit {
       console.log(res)
     })
   }
+  onChange(event:any) {
+     
+    console.log( event.target.value);
+    let id =event.target.value;
+
+    if (id == 0) {
+      this.getProductos();
+    } else {
+      this.getProductosCategoria(id);
+    }
+  }
 
   public verProducto(productoP: Producto){
     this.producto = productoP;
     this.ruta.navigate(['item-compra',{producto:JSON.stringify(productoP)}]);
+  }
+
+  getProductosCategoria(id:any){
+    this.service.getProductosCategoria(id).subscribe(res => {
+      console.log(res)
+      this.productos = res
+    }, error => {
+      console.log(error)
+    })
   }
 }
