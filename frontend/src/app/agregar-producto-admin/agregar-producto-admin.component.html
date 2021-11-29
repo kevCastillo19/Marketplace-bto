@@ -33,11 +33,11 @@
         <input id="nombreProducto" formControlName="nombreProducto" type="text" style="width: 90%;" class="form-control" required>
         <div style="width: 90%;" *ngIf="productoForm.controls['nombreProducto'].invalid && productoForm.controls['nombreProducto'].dirty" class="alert alert-success" role="alert">
           <div style="width: 90%;" *ngIf="productoForm.controls['nombreProducto'].errors?.required">Producto es requerido</div>
-          <div  *ngIf="productoForm.controls['nombreProducto'].errors?.minlength">El producto debe tener 10 o mas letras </div>      
+          <div  *ngIf="productoForm.controls['nombreProducto'].errors?.minlength">El producto debe tener 10 o mas letras </div>
         </div>
-      
+
       </div>
-     
+
 
 
 
@@ -47,7 +47,7 @@
         <input formControlName="descProducto" type="text" style="width: 90%;" class="form-control" required>
         <div style="width: 90%;" *ngIf="productoForm.controls['descProducto'].invalid && productoForm.controls['descProducto'].dirty" class="alert alert-success" role="alert">
           <div style="width: 90%;" *ngIf="productoForm.controls['descProducto'].errors?.required">La descripcion es requerida</div>
-          <div  *ngIf="productoForm.controls['descProducto'].errors?.minlength">La descripcion debe tener 10 o mas letras </div>      
+          <div  *ngIf="productoForm.controls['descProducto'].errors?.minlength">La descripcion debe tener 10 o mas letras </div>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
           formControlName="precioProducto"
           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="6" />
           <div style="width: 90%;" *ngIf="productoForm.controls['precioProducto'].invalid && productoForm.controls['precioProducto'].dirty" class="alert alert-success" role="alert">
-            <div style="width: 90%;" *ngIf="productoForm.controls['precioProducto'].errors?.required">El precio es requerido</div>     
+            <div style="width: 90%;" *ngIf="productoForm.controls['precioProducto'].errors?.required">El precio es requerido</div>
           </div>
       </div>
 
@@ -68,7 +68,7 @@
           formControlName="stockProducto" name="stockProducto"
           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3" />
           <div style="width: 90%;" *ngIf="productoForm.controls['stockProducto'].invalid && productoForm.controls['stockProducto'].dirty" class="alert alert-success" role="alert">
-            <div style="width: 90%;" *ngIf="productoForm.controls['stockProducto'].errors?.required">el Stock es requerido</div>  
+            <div style="width: 90%;" *ngIf="productoForm.controls['stockProducto'].errors?.required">el Stock es requerido</div>
           </div>
       </div>
 
@@ -80,7 +80,7 @@
           <option *ngFor="let categoria of categorias" value="{{ categoria.idCategoria }}" >{{categoria.nombreCategoria}} </option>
         </select>
         <div style="width: 90%;" *ngIf="productoForm.controls['idCategoria'].invalid && productoForm.controls['idCategoria'].dirty" class="alert alert-success" role="alert">
-          <div style="width: 90%;" *ngIf="productoForm.controls['idCategoria'].errors?.required">La categoria es requerida</div>    
+          <div style="width: 90%;" *ngIf="productoForm.controls['idCategoria'].errors?.required">La categoria es requerida</div>
         </div>
       </div>
       <!--<div class="col-xs-12 col-md-6">
@@ -90,6 +90,13 @@
           <option class="option" formControlName="idCategoria">Debes Seleccionar La Categoria</option>
         </select>
       </div>-->
+      <div class="col-xs-12 col-md-6">
+        <label class="form-label">Imagen del producto</label><br>
+        <input type="file" class="file-upload" formControlName="imagen" #fileUpload accept="image/*">
+          <div style="width: 90%;" *ngIf="productoForm.controls['imagen'].invalid && productoForm.controls['imagen'].dirty" class="alert alert-success" role="alert">
+            <div style="width: 90%;" *ngIf="productoForm.controls['imagen'].errors?.required">La imagen es requerido</div>
+          </div>
+      </div>
 
       <div class="col-xs-6 col-md-12">
         <button (click)="agregarProducto(producto)" class="btn btn-success" type="submit">Guardar Producto</button>

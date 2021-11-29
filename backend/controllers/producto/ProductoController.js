@@ -72,6 +72,7 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
     let precioProducto = req.body.precioProducto;
     let stockProducto = req.body.stockProducto;
     let idCategoria = req.body.idCategoria;
+    let imagen = req.body.imagen;
     console.log(req.body);
     let respuesta = {
         status: 200,
@@ -81,7 +82,7 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
 
     if (!validador.validarDatos(nombreProducto) || !validador.validarDatos(descProducto)
      || !validador.validarDatos(precioProducto) || !validador.validarDatos(stockProducto) 
-     || !validador.validarDatos(idCategoria)) {
+     || !validador.validarDatos(idCategoria) || !validador.validarDatos(imagen)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador;
 
@@ -89,7 +90,7 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
 
     }
 
-    service.agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria)
+    service.agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
         respuesta.id = data.insertId;
@@ -110,6 +111,7 @@ router.put('/actualizar-producto', validador.validate(validador.productoUpdateVa
     let precioProducto = req.body.precioProducto;
     let stockProducto = req.body.stockProducto;
     let idCategoria = req.body.idCategoria;
+    let imagen = req.body.imagen;
     let idProducto = req.body.idProducto;
 
     let respuesta = {
@@ -119,7 +121,7 @@ router.put('/actualizar-producto', validador.validate(validador.productoUpdateVa
 
     if (!validador.validarDatos(nombreProducto) || !validador.validarDatos(descProducto)
     || !validador.validarDatos(precioProducto) || !validador.validarDatos(stockProducto) 
-    || !validador.validarDatos(idCategoria) || !validador.validarDatos(idProducto)) {
+    || !validador.validarDatos(idCategoria) || !validador.validarDatos(imagen) || !validador.validarDatos(idProducto)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador
 
@@ -127,7 +129,7 @@ router.put('/actualizar-producto', validador.validate(validador.productoUpdateVa
 
     }
 
-    service.actualizarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,idProducto)
+    service.actualizarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen,idProducto)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
             

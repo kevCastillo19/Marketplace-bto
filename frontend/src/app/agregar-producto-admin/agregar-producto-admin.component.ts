@@ -37,6 +37,7 @@ export class AgregarProductoAdminComponent implements OnInit {
       precioProducto: ['', Validators.required],
       stockProducto: ['', Validators.required],
       idCategoria: ['', Validators.required],
+      imagen: ['',Validators.required]
     })
 
     /*this.productoForm = this.fb.group({
@@ -59,11 +60,12 @@ export class AgregarProductoAdminComponent implements OnInit {
       idCategoria: ['']
     });*/
     this.productoForm = this.fb.group({
-      nombreProducto: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
+      nombreProducto: ['', Validators.required],
       descProducto: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
       precioProducto: ['', Validators.required],
       stockProducto: ['', Validators.required],
       idCategoria: ['', Validators.required],
+      imagen: ['',Validators.required]
     })
 
   }
@@ -87,8 +89,6 @@ export class AgregarProductoAdminComponent implements OnInit {
       console.log(response);
       if (response.status == 200) {
         this.showAuthorizedMessage("Producto agregado exitosamente", "Exito!");
-        this.ruta.navigate(['agregar-imagen-admin', { producto: JSON.stringify(this.producto) }]);
-
       } else {
         this.showNotAuthorizedMessage(response.mensaje, "Error")
       }
