@@ -35,20 +35,7 @@
       </div>
       <div class="profile__cta"><a (click)="verProducto(producto)" class="button" style="color: black">Ver Mas</a></div>
       <div *ngIf="idRol != 2" id="user2" class="profile__cta"><a (click)="updateProducto(producto)"  class="button" style="color: black">Actualizar</a></div><br>
-      <form>
-        <p class="clasificacion">
-          <input id="radio1" type="radio" name="estrellas" value="5"><!--
-          --><label for="radio1">★</label><!--
-          --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-          --><label for="radio2">★</label><!--
-          --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-          --><label for="radio3">★</label><!--
-          --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-          --><label for="radio4">★</label><!--
-          --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-          --><label for="radio5">★</label>
-        </p>
-      </form>
+     
       <!--<div class="profile__cta"><button type="submit" (click)="updateProducto(producto)" class="btn btn-dark">Actualizar</button></div>
       <div class="profile__cta"><button type="submit" (click)="eliminarProducto(producto.idProducto)" class="btn btn-dark">Eliminar</button></div>-->
     </div>

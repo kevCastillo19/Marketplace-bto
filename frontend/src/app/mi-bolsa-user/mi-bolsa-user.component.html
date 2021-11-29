@@ -58,25 +58,16 @@
                 <td id="precioProducto">${{detalles[i].total}}</td>
                 <td id="precioProducto">
                   <div class="form__field">
-                    <input type="submit" value="X" (click)="borrarProductoCarrito(producto.idProducto)">
+                    <input type="submit" class="btn btn-danger" value="     X     " (click)="borrarProductoCarrito(producto.idProducto)">
                   </div>
                 </td>
 
               </tr>
 
             </tbody>
-            <tfoot>
-              <tr>
-
-                <th>Total</th>
-                <th class="col-md-2 col-md-2"></th>
-                <th class="col-md-1 col-md-1"></th>
-                <th class="col-md-2 col-md-2">{{total}}</th>
-
-              </tr>
-            </tfoot>
+           
           </table>
-          <div class="profile__cta"><a (click)="comprar()" class="button" style="color: black">Guardar</a></div>
+          <button class="btn btn-success" ><a (click)="comprar()" class="button" style="color: white">Comprar</a></button>
         </div>
       </div>
     </div>
