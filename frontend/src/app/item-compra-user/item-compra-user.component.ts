@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ItemCompraUserComponent implements OnInit {
 
+  idRol:number=0;
   producto: Producto = new Producto();
   valoracion: Valoracion = new Valoracion();
   usuario:Usuario = new Usuario();
@@ -23,6 +24,7 @@ export class ItemCompraUserComponent implements OnInit {
     private valoracionService: ValoracionService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.idRol = this.usuarioService.getRole();
     this.producto = JSON.parse(this.route.snapshot.params.producto);
     this.usuario = this.usuarioService.userLogged() as Usuario;
 

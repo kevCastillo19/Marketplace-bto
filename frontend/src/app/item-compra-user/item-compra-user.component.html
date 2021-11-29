@@ -46,11 +46,6 @@
 
 
       <div class="overlay-container">
-        <div>
-          <button id="valoracion"  type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-           Añadir una valoracion
-          </button>
-        </div>
         <h5 id="nombreProducto">Nombre: {{producto.nombreProducto}}</h5>
         <h5 id="descProducto">Descripcion: {{producto.descProducto}}</h5>
 
@@ -62,9 +57,12 @@
         </div>
         <div class="row">
           <div class="col-sm-12 text-center">
-            <button id="agregar" type="submit" class="btn btn-warning" (click)="agregarCarrito()">Agregar al Carrito</button>
+            <button *ngIf="idRol != 1" id="agregar" type="submit" class="btn btn-warning" (click)="agregarCarrito()">Agregar al Carrito</button>
             <button id="producto" class="btn btn-success"><a style="font-size: 12px;" href="/productos">Seguir
                 Comprando</a></button>
+                <button *ngIf="idRol != 1" id="valoracion"  type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Añadir una valoracion
+                 </button>
           </div>
         </div>
       </div>
