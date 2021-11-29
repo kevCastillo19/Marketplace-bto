@@ -17,7 +17,7 @@ export class AgregarImagenAdminComponent implements OnInit {
   imagen: Producto = new Producto();
   productoNew: Producto = new Producto();
   imagenForm = new FormGroup({
-  
+
     nombreProducto: new FormControl(''),
     descProducto: new FormControl(''),
     precioProducto: new FormControl(''),
@@ -26,8 +26,7 @@ export class AgregarImagenAdminComponent implements OnInit {
     idProducto: new FormControl('')
   })
   categorias: Categoria[] = [];
-
-
+  fileImagen: File | null = null;
 
   constructor(private service: ProductoService, private route: ActivatedRoute) { }
 
@@ -42,10 +41,20 @@ export class AgregarImagenAdminComponent implements OnInit {
       .subscribe(res => {
         this.productos.push(res)
         this.imagenForm.reset('');
+        console.log(res)
       }, error => {
         console.log(error)
       });
   }
-
-
+  handleFileInput(event: any) {
+    this.fileImagen = event.item(0);
+    console.log(this.fileImagen?.name);
+  }
+  onFileSelected(event: any) {
+    console.log(this.fileImagen?.name);
+    this.fileImagen = event.target.files[0];
+    if (this.fileImagen) {
+//2 opciones, se puede convertir la iagen en base 64 y mandar el string con el id del producto o se puede mandar el archivo como tal como multipart forma data
+    }
+  }
 }

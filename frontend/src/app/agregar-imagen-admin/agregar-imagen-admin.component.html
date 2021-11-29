@@ -31,16 +31,19 @@
       
       <div class="col-xs-12 col-md-6">
         <label class="form-label">Url de la Imagen</label>
-        <input type="file" id="urlImage" class="form-control" name="urlImage">
+        <!--<input type="file" id="urlImage" class="form-control" name="urlImage" (change)="handleFileInput($event.target.files)" accept="image/*">
+        -->
+        <input type="file" class="file-upload" (change)="onFileSelected($event)" #fileUpload accept="image/*">
+ 
 
       </div>
 
-      <div class="col-xs-12 col-md-6" >
+    <!--  <div class="col-xs-12 col-md-6" >
         <label class="form-label">id del Producto</label>
         <input type="text" style="width: 90%;" class="form-control" id="idProducto" formControlName="idProducto"  [(ngModel)]="imagen.idProducto" 
         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="5" />
       </div>
-      <!--  -->
+        -->
 
       <div class="col-xs-6 col-md-12">
       <button class="btn btn-success" type="submit">Agregar Imagen</button>
