@@ -1,5 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 
 const mantenimientoProducto = require('./controllers/producto/ProductoController')
 const mantenimientoImagen   = require('./controllers/Imagen/ImagenController')
@@ -39,6 +41,32 @@ app.use('/Detalleventa', mantenimientoDetalleVenta);
 app.use('/Conversion', mantenimientoConversion);
 app.use('/Valoracion', mantenimientoValoracion);
 app.use('/Categoria' , mantenimientoCategoria);
+
+const options = {
+    definition: {
+      openapi: "3.0.0",
+      info: {
+        title: "API MarketPlace",
+        version: "0.1.0",
+        description:
+          "API MarketPlace documentacion",
+        
+      },
+      servers: [
+        {
+          url: "http://localhost:3000",
+        },
+      ],
+    },
+    apis: ["./controllers/producto/ProductoController.js"],
+  };
+  
+  const specs = swaggerJsdoc(options);
+  app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(specs)
+  );
 
 app.listen(PORT,() => {
     console.log('server running');

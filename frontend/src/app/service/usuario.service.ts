@@ -21,12 +21,7 @@ export class UsuarioService {
   }
 
   registro(usuario:Usuario){
-    var token =JSON.parse( this.getToken('token')) ;
-    let params = JSON.stringify(usuario);
-    console.log(params);
-    //let headers = new HttpHeaders({'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token.token });
-    let headers = new HttpHeaders().set('Authorization', 'Bearer '+token.token);
-    return this.http.post<Usuario>(this.url+'Usuario/agregar-usuario', usuario, {headers: headers});
+    return this.http.post<Usuario>(this.url+'Usuario/agregar-usuario', usuario);
   }
 
   saveToken(key: string, token: string){

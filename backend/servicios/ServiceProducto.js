@@ -21,6 +21,15 @@ function seleccionarProductoDetalle(idProducto) {
     });
 }
 
+function seleccionarProductoCategoria(idCategoria) {
+    return new Promise((resolve, reject) => {
+        conexion.query(propertiesConsulta.SelectProductoCategoria,[idCategoria],(err, resultado) => {
+            if (err) reject(err)
+            else resolve(resultado)
+        });
+    });
+}
+
 function agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria){
     return new Promise((resolve, reject)=>{
         conexion.query(propertiesConsulta.SP_AgregaProducto,[nombreProducto,descProducto,precioProducto,stockProducto,idCategoria],(err,resultado)=>{
@@ -56,5 +65,6 @@ module.exports = {
     agregarProducto: agregarProducto,
     seleccionarProductoDetalle: seleccionarProductoDetalle,
     actualizarProducto: actualizarProducto,
-    eliminarProducto: eliminarProducto
+    eliminarProducto: eliminarProducto,
+    seleccionarProductoCategoria: seleccionarProductoCategoria
 }

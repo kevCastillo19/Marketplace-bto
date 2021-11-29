@@ -2,11 +2,9 @@
 
 
     <ul>
-      <select id="user1" name="select" style="color: white; ">
-        <option value="" selected>Selecciona una Categoria</option>
-        <option value="value1">Value 1</option>
-        <option value="value2">Value 2</option>
-        <option value="value3">Value 3</option>
+      <select name="select" [ngModel]="selection" (change)="onChange($event)" id="user1" style="color: white; ">
+        <option value="0" selected>Selecciona una Categoria</option>
+        <option value="{{cat.idCategoria}}" *ngFor="let cat of categorias">{{cat.nombreCategoria}}</option>
       </select>
     </ul>
 

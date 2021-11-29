@@ -3,5 +3,6 @@
     "SelectProductoDetalle": "SELECT * FROM PRODUCTO WHERE idProducto=?",
     "SP_AgregaProducto":"INSERT INTO PRODUCTO(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values(?,?,?,?,?)",
     "UpdateProducto":"UPDATE PRODUCTO set nombreProducto=?,descProducto=?,precioProducto=?,stockProducto=?,idCategoria=? where idProducto=?",
-    "DeleteProducto":"delete from producto where idProducto=?"
+    "DeleteProducto":"delete from producto where idProducto=?",
+    "SelectProductoCategoria": "SELECT * FROM PRODUCTO WHERE idCategoria=?"
 }

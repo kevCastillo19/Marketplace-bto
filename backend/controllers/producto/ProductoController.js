@@ -9,6 +9,16 @@ const TOKEN_SECRET = "bytheone$2021";
 
 var router = express.Router();
 
+/**
+ * @swagger
+ *  /Producto/consultar-producto:
+ *      get:
+ *        description: Consultar productos
+ *        responses:
+ *                200:
+ *                  description: Success
+ *  
+ */
 router.get('/consultar-producto', function (req, res) {
     service.seleccionarProductos()
         .then(result => {
@@ -19,6 +29,7 @@ router.get('/consultar-producto', function (req, res) {
             res.status(500).json(err)
         })
 });
+
 
 router.get('/consultar-productoDetalle/:idProducto', function (req, res) {
 
@@ -33,6 +44,28 @@ router.get('/consultar-productoDetalle/:idProducto', function (req, res) {
     }
 
     service.seleccionarProductoDetalle(idProducto)
+        .then(result => {
+
+            res.status(200).json(result)
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
+});
+
+router.get('/consultar-productoCategoria/:idCategoria', function (req, res) {
+
+    let idCategoria = req.params.idCategoria;
+
+    if (!validador.validarDatos(idCategoria)) {
+        respuesta.status = 400;
+        respuesta.mensaje = mensajes.MensajeValidador
+
+        return res.status(400).json(respuesta);
+
+    }
+
+    service.seleccionarProductoCategoria(idCategoria)
         .then(result => {
 
             res.status(200).json(result)
@@ -66,7 +99,7 @@ router.delete('/eliminar-producto/:idProducto', function (req, res) {
         })
 });
 
-router.post('/agregar-producto', validador.validate(validador.productoValidacion), (req, res)=>{
+router.post('/agregar-producto', autenticarToken, validador.validate(validador.productoValidacion), (req, res)=>{
     let nombreProducto = req.body.nombreProducto;
     let descProducto = req.body.descProducto;
     let precioProducto = req.body.precioProducto;
@@ -104,7 +137,7 @@ router.post('/agregar-producto', validador.validate(validador.productoValidacion
     //res.json(respuesta);
 });
 
-router.put('/actualizar-producto', validador.validate(validador.productoUpdateValidacion), (req, res)=>{
+router.put('/actualizar-producto',autenticarToken, validador.validate(validador.productoUpdateValidacion), (req, res)=>{
     let nombreProducto = req.body.nombreProducto;
     let descProducto = req.body.descProducto;
     let precioProducto = req.body.precioProducto;
