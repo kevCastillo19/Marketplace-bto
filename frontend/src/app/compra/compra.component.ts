@@ -114,11 +114,16 @@ export class CompraComponent implements OnInit {
           );
         });
         this.conversion.numVenta=res.id;
+
+
         this.conversion.tipoMoneda=conversion;
         if (conversion=="bitcoin") {
+
           this.bitcoinRate = this.total/this.bitcoin.rate_float;
           this.conversion.montoIngresado=this.bitcoinRate;
           this.conversion.valorMoneda=this.bitcoin.rate_float;
+          console.log("conversion")
+          console.log(this.conversion);
           this.conversionService.agregarConversion(this.conversion).subscribe((resConversion:any)=>{
             if (resConversion.status == 200) {
               console.log("se agregó conversion");

@@ -45,7 +45,6 @@ function productoUpdateValidacion(data) {
         precioProducto: yup.number().positive().required(),
         stockProducto: yup.number().integer().positive().required(),
         idCategoria: yup.number().integer().positive().required(),
-        imagen: yup.string().required(),
         idProducto: yup.number().integer().positive().required(),
     });
     

@@ -4,6 +4,7 @@ import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
 import { ActivatedRoute } from '@angular/router';
 import { Categoria } from '../models/categoria';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-actualizar-producto',
@@ -16,7 +17,7 @@ export class ActualizarProductoComponent implements OnInit {
   productoOld: Producto = new Producto();
   productoNew: Producto = new Producto();
   productoForm = new FormGroup({
-  
+
     nombreProducto: new FormControl(''),
     descProducto: new FormControl(''),
     precioProducto: new FormControl(''),
@@ -28,7 +29,7 @@ export class ActualizarProductoComponent implements OnInit {
 
 
 
-  constructor(private service: ProductoService, private route: ActivatedRoute) { }
+  constructor(private service: ProductoService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getCategorias();
@@ -48,11 +49,15 @@ export class ActualizarProductoComponent implements OnInit {
     this.service.updateProducto(this.productoForm.value)
       .subscribe(res => {
         this.productos.push(res)
+        this.showAuthorizedMessage("Producto actualizado exitosamente", "Exito!");
         this.productoForm.reset('');
       }, error => {
         console.log(error)
       });
   }
 
+  showAuthorizedMessage(mensaje: string, titulo: string) {
+    this.toastr.success(mensaje, titulo);
+  }
 
 }

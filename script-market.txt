@@ -1,0 +1,126 @@
+create database marketplace;
+
+use marketplace;
+
+create table usuario(
+	idUsuario integer primary key auto_increment,
+    nombreUsuario varchar(60),
+    correoUsuario varchar(70),
+    contrasena varchar(50),
+    telefonoUsuario varchar(15),
+    direccion varchar(100)
+);
+select *from usuario;
+delete from usuario;
+insert into rol(nombreRol) values('Administrador');
+insert into rol(nombreRol) values('Cliente');
+select *from rol;
+INSERT INTO USUARIO(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol) 
+values('Kevin','kevin@gmail.com','k123','7676-4664','san salvador',2);
+INSERT INTO USUARIO(nombreUsuario,correoUsuario,contrasena,telefonoUsuario,direccion,idRol) 
+values('diego','diego@gmail.com','d123','7676-4664','san martin',1);
+create table rol(
+	idRol integer primary key auto_increment,
+    nombreRol varchar(100)
+);
+select *from rol;
+#select *from imagen;
+alter table usuario add column idRol integer;
+alter table usuario add constraint fk_rol foreign key(idRol) references rol(idRol);
+#alter table producto modify column descProducto varchar(100);
+#describe producto;
+
+
+create table categoria(
+	idCategoria integer primary key auto_increment,
+    nombreCategoria varchar(50)
+);
+insert into categoria(nombreCategoria) values('Electrodomesticos');
+insert into categoria(nombreCategoria) values('Tecnología');
+select *from categoria;
+
+#drop table imagen;
+create table producto(
+	idProducto integer primary key auto_increment,
+    nombreProducto varchar(100),
+    descProducto varchar(100),
+    precioProducto float,
+    stockProducto int,
+    idCategoria integer,
+    FOREIGN KEY(idCategoria) references categoria(idCategoria)
+);
+ insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Laptop dell',10,500,5,2);
+#insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Refrigeradora',10,500,5,1);
+#insert into producto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) values('Microonda',15,100,8,1);
+##select max(idProducto) as id from producto;
+##select *from producto;
+##select *from imagen;
+#delete from producto where idProducto=8;
+
+ 
+create table imagen(
+	idImagen integer primary key auto_increment,
+    idProducto integer,
+    urlImage varchar(200),
+    FOREIGN KEY(idProducto) references producto(idProducto)  on delete cascade
+);
+
+#drop procedure sp_agregarProducto;
+
+drop procedure sp_agregarProducto
+DELIMITER //
+create procedure sp_agregarProducto(
+in p_nombreProducto varchar(100), 
+in p_descProducto varchar(100), in p_precioProducto float, 
+in p_stockProducto int, in p_idCategoria integer)
+BEGIN
+	declare v_idProducto integer;
+    
+    INSERT INTO PRODUCTO(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria) 
+    VALUES(p_nombreProducto,p_descProducto,p_precioProducto,p_stockProducto,p_idCategoria);
+    
+   
+   
+END //
+DELIMITER ;
+#call sp_agregarProducto('Licuadora',15,100,8,1,'licuadoraimagen');
+
+
+create table venta(
+	numVenta integer primary key auto_increment,
+    fechaVenta date,
+    totalVenta float,
+    idUsuario integer,
+    FOREIGN KEY(idUsuario) references usuario(idUsuario)
+);
+
+create table detalleVenta(
+	idDetalle integer primary key auto_increment,
+    numVenta integer,
+    idProducto integer,
+    cantidadProducto int,
+    total float,
+    FOREIGN KEY(numVenta) references venta(numVenta),
+    FOREIGN KEY(idProducto) references producto(idProducto)
+);
+
+#drop table valoracion;
+create table valoracion(
+    idUsuario integer,
+    idProducto integer,
+    calificacion int,
+    FOREIGN KEY(idUsuario) references usuario(idUsuario) ,
+    FOREIGN KEY(idProducto) references producto(idProducto) on delete cascade,
+    primary key(idUsuario,idProducto)
+);
+
+create table conversion(
+	idConversion integer primary key auto_increment,
+    tipoMoneda varchar(50),
+    valorMoneda float,
+    montoIngresado float,
+    fechaConversion date,
+    FOREIGN KEY(idConversion) references venta(numVenta)
+);
+
+show tables;

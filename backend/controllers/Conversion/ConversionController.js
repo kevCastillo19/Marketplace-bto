@@ -56,7 +56,7 @@ router.post('/agregar-conversion',validador.validate(validador.conversionValidac
     let tipoMoneda = req.body.tipoMoneda;
     let valorMoneda = req.body.valorMoneda;
     let montoIngresado = req.body.montoIngresado;
-
+    console.log(req.body)
     let respuesta = {
         status: 200,
         mensaje: ""
@@ -81,7 +81,7 @@ router.post('/agregar-conversion',validador.validate(validador.conversionValidac
             respuesta.mensaje = mensajes.mensajeError
             res.status(500);
     })
-    res.json(respuesta);
+    //res.json(respuesta);
 });
 
 module.exports=router;

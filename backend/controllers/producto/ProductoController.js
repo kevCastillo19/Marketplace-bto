@@ -138,13 +138,12 @@ router.post('/agregar-producto', autenticarToken, validador.validate(validador.p
     //res.json(respuesta);
 });
 
-router.put('/actualizar-producto',autenticarToken, validador.validate(validador.productoUpdateValidacion), (req, res)=>{
+router.put('/actualizar-producto', validador.validate(validador.productoUpdateValidacion), (req, res)=>{
     let nombreProducto = req.body.nombreProducto;
     let descProducto = req.body.descProducto;
     let precioProducto = req.body.precioProducto;
     let stockProducto = req.body.stockProducto;
     let idCategoria = req.body.idCategoria;
-    let imagen = req.body.imagen;
     let idProducto = req.body.idProducto;
 
     let respuesta = {
@@ -154,7 +153,7 @@ router.put('/actualizar-producto',autenticarToken, validador.validate(validador.
 
     if (!validador.validarDatos(nombreProducto) || !validador.validarDatos(descProducto)
     || !validador.validarDatos(precioProducto) || !validador.validarDatos(stockProducto) 
-    || !validador.validarDatos(idCategoria) || !validador.validarDatos(imagen) || !validador.validarDatos(idProducto)) {
+    || !validador.validarDatos(idCategoria) ||  !validador.validarDatos(idProducto)) {
         respuesta.status = 400;
         respuesta.mensaje = mensajes.MensajeValidador
 
@@ -162,7 +161,7 @@ router.put('/actualizar-producto',autenticarToken, validador.validate(validador.
 
     }
 
-    service.actualizarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen,idProducto)
+    service.actualizarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,idProducto)
     .then(data=>{
         respuesta.mensaje = mensajes.mensajeOK
             

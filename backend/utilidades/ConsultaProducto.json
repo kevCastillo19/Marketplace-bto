@@ -2,7 +2,7 @@
     "SelectProductos": "SELECT * FROM PRODUCTO",
     "SelectProductoDetalle": "SELECT * FROM PRODUCTO WHERE idProducto=?",
     "SP_AgregaProducto":"INSERT INTO PRODUCTO(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria, imagen) values(?,?,?,?,?,?)",
-    "UpdateProducto":"UPDATE PRODUCTO set nombreProducto=?,descProducto=?,precioProducto=?,stockProducto=?,idCategoria=?, imagen=? where idProducto=?",
+    "UpdateProducto":"UPDATE PRODUCTO set nombreProducto=?,descProducto=?,precioProducto=?,stockProducto=?,idCategoria=? where idProducto=?",
     "DeleteProducto":"delete from producto where idProducto=?",
     "SelectProductoCategoria": "SELECT * FROM PRODUCTO WHERE idCategoria=?"
 }

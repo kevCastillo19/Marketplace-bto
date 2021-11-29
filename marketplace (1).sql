@@ -77,18 +77,18 @@ INSERT INTO `categoria` (`idCategoria`, `nombreCategoria`) VALUES
 
 CREATE TABLE `conversion` (
   `idConversion` int(11) NOT NULL,
+  `numVenta` integer,
   `tipoMoneda` varchar(50) DEFAULT NULL,
   `valorMoneda` float DEFAULT NULL,
-  `montoIngresado` float DEFAULT NULL,
-  `fechaConversion` date DEFAULT NULL
+  `montoIngresado` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `conversion`
 --
 
-INSERT INTO `conversion` (`idConversion`, `tipoMoneda`, `valorMoneda`, `montoIngresado`, `fechaConversion`) VALUES
-(1, 'Euro', 1.25, 95.99, '2021-11-23');
+INSERT INTO `conversion` (`idConversion`, `tipoMoneda`, `valorMoneda`, `montoIngresado`) VALUES
+(1, 'Euro', 1.25, 95.99);
 
 -- --------------------------------------------------------
 
@@ -342,7 +342,7 @@ ALTER TABLE `venta`
 -- Filtros para la tabla `conversion`
 --
 ALTER TABLE `conversion`
-  ADD CONSTRAINT `conversion_ibfk_1` FOREIGN KEY (`idConversion`) REFERENCES `venta` (`numVenta`);
+  ADD CONSTRAINT `conversion_ibfk_1` FOREIGN KEY (`numVenta`) REFERENCES `venta` (`numVenta`);
 
 --
 -- Filtros para la tabla `detalleventa`

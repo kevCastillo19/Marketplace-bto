@@ -22,7 +22,7 @@ align-items: center;
   <div class="container">
 
     <div class="alert alert-success" role="alert">
-        Actualizando el producto <b id="nombreProducto">*nombre del producto*</b>
+        Actualizando el producto <b id="nombreProducto">{{productoOld.nombreProducto}}</b>
       </div>
 
       <form [formGroup]="productoForm" class="row g-3" enctype="multipart/form-data" action="" method="post"
@@ -58,7 +58,7 @@ align-items: center;
         <label class="form-label">Categoria del Producto</label>
 
         <select name="idCategoria" style="width: 90%;"   formControlName="idCategoria" [(ngModel)]="productoOld.idCategoria" class="form-select" required>
-          
+
           <option *ngFor="let categoria of categorias" value="{{ categoria.idCategoria }}" >{{categoria.nombreCategoria}} </option>
         </select>
       </div>
@@ -72,7 +72,7 @@ align-items: center;
 
       <div class="col-xs-12 col-md-6" hidden>
         <label class="form-label">id del Producto</label>
-        <input type="text" style="width: 90%;" class="form-control" id="idProducto" formControlName="idProducto"  [(ngModel)]="productoOld.idProducto" 
+        <input type="text" style="width: 90%;" class="form-control" id="idProducto" formControlName="idProducto"  [(ngModel)]="productoOld.idProducto"
         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="5" />
       </div>
 

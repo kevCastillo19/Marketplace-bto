@@ -30,7 +30,7 @@ function seleccionarProductoCategoria(idCategoria) {
     });
 }
 
-function agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria){
+function agregarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen){
     return new Promise((resolve, reject)=>{
         conexion.query(propertiesConsulta.SP_AgregaProducto,[nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen],(err,resultado)=>{
             if(err) reject(err)
@@ -40,9 +40,9 @@ function agregarProducto(nombreProducto,descProducto,precioProducto,stockProduct
         });
     });
 }
-function actualizarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen,idProducto){
+function actualizarProducto(nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,idProducto){
     return new Promise((resolve, reject)=>{
-        conexion.query(propertiesConsulta.UpdateProducto,[nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,imagen,idProducto],(err,resultado)=>{
+        conexion.query(propertiesConsulta.UpdateProducto,[nombreProducto,descProducto,precioProducto,stockProducto,idCategoria,idProducto],(err,resultado)=>{
             if(err) reject(err)
             else { 
                 resolve(resultado)
